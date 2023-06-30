@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    background-color: blue;
+    background-color: #2227E6;
     flex-direction: row;
     justify-content: space-between;
     border-radius: 15px;
