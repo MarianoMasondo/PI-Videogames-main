@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    background-color: blue;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 15px;
+    border: 1px black;
+    padding: 5px;
+}
