@@ -5,6 +5,7 @@ import Cards from "../../componets/cards/cards";
 import React, { useEffect } from "react";
 import  getVideogames from "../../redux/actions";
 
+
 export default function HomePage(){
 
     const dispatch = useDispatch();
@@ -16,8 +17,7 @@ export default function HomePage(){
     return(
         <div className={styles.container}>
             <SearchBar />
-            <Cards />    
-            <hi>Homepage</hi>      
+            <Cards />      
         </div>
     );
 }
