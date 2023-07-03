@@ -5,7 +5,7 @@ import LandingPage from './views/landingPage/landingPage.jsx';
 import HomePage from './views/homePage/homePage.jsx';
 import DetailPage from './views/detailPage/detailPage.jsx';
 import FormPage from './views/formPage/formPage';
-import NavBar from './componets/navbar/navbar';
+import NavBar from './components/navbar/navbar';
 
 function App() {
   

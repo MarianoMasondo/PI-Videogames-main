@@ -1,35 +1,34 @@
 import React, { useEffect } from "react";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getVideogames} from "../../redux/actions";
+import {detailVideogames} from "../../redux/actions";
 import styles from "./detailPage.module.css";
-import Card from "../../componets/card/card";
 
 export default function DetailPage(){
   const {id} = useParams();
   const dispatch = useDispatch();
-  const videogames = useSelector((state) => state.Videogames);
-  const videogame = videogames.find((game) => game.id === id);
+  const DetailGame = useSelector((state) => state.DetailGame);
 
-  useEffect(() => {
-    dispatch(getVideogames());
-  },[dispatch]);
-
-  if(!videogame){
-    return <p>Juego no encontrado</p>
+  function stripTags(html){
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    return div.tectContent || div.innerText || "";
   }
 
+  useEffect(() => {
+    dispatch(detailVideogames(id));
+  },[dispatch, id]);
+
     return(
-      <div className={styles.container}>
-          <Card
-            id={videogame.id} 
-            name={videogame.name}
-            platforms={videogame.platforms}   
-            image={videogame.image}
-            released={videogame.released}
-            rating={videogame.rating}
-            genres={videogame.genres}    
-          />
+      <div className={styles.detailContainer}$>         
+            <h1>{DetailGame.name}</h1>
+            <div><img src={DetailGame.image} className={styles.image}/></div>
+            <p>Description: {stripTags(DetailGame.description)}</p>
+            <p>Rating: {DetailGame.rating}</p>
+            <p>Released: {DetailGame.released}</p>
+            <p>Genres: {DetailGame.genres && DetailGame.genres.join(", ")}</p>          
+            <p>Platforms: {DetailGame.platforms && DetailGame.platforms.map(platform => platform.platform.name).join(", ")}</p>
+            <p>Id:{DetailGame.id}</p> 
         </div>
     );
 }

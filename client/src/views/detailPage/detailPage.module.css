@@ -1,0 +1,13 @@
+.detailContainer {
+   background-color: #4FC0D0;
+   display: flow-root;
+   height: 100vh;
+   flex: 1;
+   padding: 20px;
+   color:white;
+}
+
+.image {
+    width: 400px;
+    height: 300px;
+}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_VIDEOGAMES, SEARCH_VIDEOGAMES } from "./types";
+import { GET_VIDEOGAMES, SEARCH_VIDEOGAMES, DETAIL_VIDEOGAMES } from "./types";
 
 export function getVideogames(){
     return async function(dispatch){
@@ -10,15 +10,25 @@ export function getVideogames(){
     };
 };
 
+export function detailVideogames(id){
+  return async function(dispatch){
+    const apiData = await axios.get(`http://localhost:3001/videogames/${id}`)
+    const DetailGames = apiData.data;
+    dispatch({
+      type: DETAIL_VIDEOGAMES,
+      payload: DetailGames,
+    })
+  }
+}
+
 export function searchVideogames(name) {
-    return async function (dispatch) {
+    return async function (dispatch){
       const apiData = await axios.get(
-        `http://localhost:3001/videogames?name=${name}`
-      );
-      const Videogames = apiData.data;
+        `http://localhost:3001/videogames?name=${name}`);
+      const SearchGames = apiData.data;
       dispatch({
         type: SEARCH_VIDEOGAMES,
-        payload: Videogames,
+        payload: SearchGames,
       });
     };
   }
