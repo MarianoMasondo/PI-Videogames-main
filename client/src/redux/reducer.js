@@ -14,7 +14,7 @@ const  reducer = (state = initialState, action) => {
         case DETAIL_VIDEOGAMES:
             return { ...state, DetailGame: action.payload};
         case SEARCH_VIDEOGAMES:
-            return {...state, SearchGames: action.payload};
+            return {...state, Videogames: action.payload};
         default:
             return {...state};
     }

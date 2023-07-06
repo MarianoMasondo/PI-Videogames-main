@@ -23,12 +23,11 @@ export function detailVideogames(id){
 
 export function searchVideogames(name) {
     return async function (dispatch){
-      const apiData = await axios.get(
-        `http://localhost:3001/videogames?name=${name}`);
-      const SearchGames = apiData.data;
+      const apiData = await axios.get(`http://localhost:3001/videogames/name?name=${name}`);
+      const Videogames = apiData.data;
       dispatch({
         type: SEARCH_VIDEOGAMES,
-        payload: SearchGames,
+        payload: Videogames,
       });
     };
   }

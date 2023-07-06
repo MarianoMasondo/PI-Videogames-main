@@ -8,6 +8,7 @@ import  { getVideogames } from "../../redux/actions";
 
 export default function HomePage(){
     const dispatch = useDispatch();
+    //ver allvideogames = uselector((state) => state.allUsears)
 
     useEffect(() => {
         dispatch(getVideogames());
@@ -16,7 +17,7 @@ export default function HomePage(){
     return(
         <div className={styles.container}>
             <SearchBar  />
-            <Cards />      
+            <Cards />   
         </div>
     );
 }

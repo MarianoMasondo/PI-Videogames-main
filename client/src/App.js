@@ -19,7 +19,7 @@ function App() {
       <Route path= "/home" element={<HomePage />} />
       <Route path= "/detail/:id" element={<DetailPage />} />
       <Route path= "/form" element={<FormPage />} />
-    </Routes> 
+    </Routes>  
     </div>
   );
 }

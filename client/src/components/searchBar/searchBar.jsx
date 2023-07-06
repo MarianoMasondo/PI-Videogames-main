@@ -1,28 +1,36 @@
 import styles from "./searchBar.module.css";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { searchVideogames } from "../../redux/actions";
 
 export default function SearchBar({onSearch}){
+  const dispatch = useDispatch()
   const [name, setName] = useState("");
   
-  const handleChange = event => {
-    const {value} = event.target;
-    setName(value);
-    console.log(name)
+  const handleChange = (event) => {
+    event.preventDefault();    
+    setName(event.target.value);
   };
 
-  const handleSearch = () => {
-    onSearch(name);
+  const handleSearch = (event) => {
+    event.preventDefault();
+    dispatch(searchVideogames(name))
     setName("");
   }
     return(
         <div className={styles.container}>         
             <input 
-              placeholder="Search..." 
-              type="text" 
-              value={name} 
               onChange={handleChange} 
+              placeholder="Search..." 
+              type="seach" 
+              value={name} 
               />
-            <button onClick={handleSearch}>Go</button>
+            <button 
+            onClick={handleSearch}
+            type="submit"
+            >Go
+            </button>
+            
         
       </div>
     )
