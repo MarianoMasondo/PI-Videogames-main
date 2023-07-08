@@ -17,22 +17,36 @@
 .filtersContainer {
     display: flex;
     justify-content: flex-end;
-    width: 95%;
+    margin-right: 5%;
   }
 
   .searchBarContainer {
     display: flex;
     justify-content: center;
-    height: 50px;
+    height: 25px;
   }
+
  .orderAscDesc{
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
-    width: 15%;
- }
+    width: 10%;    
+    position: relative;
+    padding: 10px;
+    height: 25px;
+    margin-left: 5%;
+  }        
+ 
 
  .orderByRating {
-    display: flex;
-    justify-content: flex-end;
-    width: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 10%;    
+  position: relative;
+  padding: 10px;
+  height: 25px;
+  margin-left: 5%;  
  }
+
+ 

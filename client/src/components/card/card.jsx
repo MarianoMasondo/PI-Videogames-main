@@ -12,8 +12,8 @@ export default function Card(props){
             <NavLink to={`/detail/${id}`} style={{ textDecoration: "none" }}>
             <img src={props.image} alt="" />
             <h1>{props.name}</h1>
-            <p>Genres: {DetailGame.genres}</p>
-            <p>rating: {props.rating}</p>
+            <p>Genres: {DetailGame.genres && DetailGame.genres.join(", ")}</p>
+            <p className={styles.rating}>rating: {props.rating}</p>
             </NavLink>
             
         </div>

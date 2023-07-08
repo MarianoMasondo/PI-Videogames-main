@@ -1,12 +1,13 @@
 
 .container {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     position: relative;
     padding: 10px;
+    height: 110px;
 }
       
-.container input[type="text"] {
+.container input {    
     width: 250px;
     padding: 10px;
     border: none;
@@ -14,12 +15,13 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
       
-.container button[type="submit"] {
+.container button {
     background-color: #4FC0D0;
     border: none;
     color: #fff;
     cursor: pointer;
     padding: 10px 25px;
+    margin-left: 4px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;

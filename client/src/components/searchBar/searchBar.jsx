@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchVideogames } from "../../redux/actions";
 
-export default function SearchBar(props){
+export default function SearchBar(){
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   
@@ -15,21 +15,22 @@ export default function SearchBar(props){
   const handleSearch = (event) => {
     event.preventDefault();
     dispatch(searchVideogames(name));
+    setName("")
   }
+  
     return(
         <div className={styles.container}>         
             <input 
               onChange={handleChange} 
               placeholder="Search..." 
               type="search" 
-              value={props.name} 
+              value={name} 
               />
             <button 
             onClick={handleSearch}
             type="submit"
             >Go
-            </button>
-            
+            </button>           
         
       </div>
     )
