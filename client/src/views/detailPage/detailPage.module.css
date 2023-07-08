@@ -1,14 +1,42 @@
+.container {
+    width: 100%; /* Ancho deseado del rectángulo */
+    margin: 0 auto; /* Centra el contenedor en la página */
+    
+  }
+
 .detailContainer {
    background-color: #4FC0D0;
-   display: flow-root;
-   height: 100vh;
-   flex: 1;
-   padding: 20px;
+   display: flex;
+   height: 91vh;
+   flex-direction: column;
+   padding: 5px;
    color:white;
 }
 
 .image {
-    width: 400px;
-    height: 300px;
+    width: 300px;
+    height: 200px;
 }
+
+.description {
+    margin: 25px;
+    text-align: center;
+}
+
+.h1 {
+    text-align: center;
+    margin: 10px;
+    
+}
+.infoContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+  }
+
+  .info {
+    flex: 1;
+    margin: 20px;
+  }
+  
 

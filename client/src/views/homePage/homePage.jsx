@@ -44,8 +44,7 @@ export default function HomePage(){
               <option value="best" >Best</option>
               <option value="worst">Worst</option>
             </select>
-          </div>
-          
+          </div>          
             <Cards />   
         </div>
         

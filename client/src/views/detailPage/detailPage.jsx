@@ -20,17 +20,19 @@ export default function DetailPage(){
   },[dispatch, id]);
 
     return(
-      <div className={styles.detailContainer}$> 
-      <div>
-        </div>        
-            <h1>{DetailGame.name}</h1>
+      <div className={styles.container}>
+        <div className={styles.detailContainer}$>              
+            <h1 className={styles.h1}>{DetailGame.name}</h1>
             <div><img src={DetailGame.image} className={styles.image} alt="" /></div>
-            <p>Description: {stripTags(DetailGame.description)}</p>
-            <p>Rating: {DetailGame.rating}</p>
-            <p>Released: {DetailGame.released}</p>
-            <p>Genres: {DetailGame.genres && DetailGame.genres.join(", ")}</p>          
-            <p>Platforms: {DetailGame.platforms && DetailGame.platforms.map(platform => platform.platform.name).join(", ")}</p>
-            <p>Id:{DetailGame.id}</p> 
+            <p className={styles.description}>Description: {stripTags(DetailGame.description)}</p>
+            <div className={styles.infoContainer}>
+            <p className={styles.info}>Genres: {DetailGame.genres && DetailGame.genres.join(", ")}</p>           
+            <p className={styles.info}>Rating: {DetailGame.rating}</p>
+            <p className={styles.info}>Released: {DetailGame.released}</p>
+            <p className={styles.info}>Platforms: {DetailGame.platforms && DetailGame.platforms.map(platform => platform.platform.name).join(", ")}</p>
+            <p className={styles.info}>Id:{DetailGame.id}</p> 
+            </div>
         </div>
+      </div>
     );
 }

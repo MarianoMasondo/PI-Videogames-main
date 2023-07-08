@@ -14,9 +14,6 @@ export default function navBar(){
             <Link to="/home">
                 <button>Home</button>
                 </Link>
-            <Link to="/detail">
-                <button>Detail</button>                  
-                </Link>
             <Link to="/form">
                 <button>Create</button>        
                 </Link> 

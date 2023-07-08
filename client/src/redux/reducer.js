@@ -1,4 +1,4 @@
-import { ALL_GENRE, DETAIL_VIDEOGAMES, FILTER_GENRE, GET_VIDEOGAMES, SEARCH_VIDEOGAMES, SORT_VIDEOGAMES_ASC_DESC, SORT_VIDEOGAMES_RATING } from "./types";
+import { ALL_GENRES, DETAIL_VIDEOGAMES, FILTER_GENRE, GET_VIDEOGAMES, SEARCH_VIDEOGAMES, SORT_VIDEOGAMES_ASC_DESC, SORT_VIDEOGAMES_RATING } from "./types";
 
 const initialState = {
     Videogames: [],
@@ -28,7 +28,7 @@ const  reducer = (state = initialState, action) => {
                 ...state, 
                 Videogames: action.payload};
 
-        case ALL_GENRE:
+        case ALL_GENRES:
             return {
                 ...state,
                 genres: action.payload
@@ -51,16 +51,15 @@ const  reducer = (state = initialState, action) => {
             }
 
         case SORT_VIDEOGAMES_ASC_DESC:
-            let videogamesSort = [...state.Videogames]; // Crear una copia del array de videojuegos
+            let videogamesSort = [...state.Videogames]; 
   
             videogamesSort.sort((a, b) => {
             if (action.payload === "asc") {
-                return a.name.localeCompare(b.name); // Ordenar alfabéticamente ascendente
+                return a.name.localeCompare(b.name); 
              } else {
-                return b.name.localeCompare(a.name); // Ordenar alfabéticamente descendente
+                return b.name.localeCompare(a.name); 
                 }
             });
-
                 return {
                     ...state,
                  Videogames: videogamesSort

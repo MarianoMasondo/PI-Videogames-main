@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { allGenres, filterGenre } from "../../redux/actions";
 
 const GenreFilter = () => {
-    const genre = useSelector(state => state.genre);
     const genres = useSelector(state => state.genres);
     const dispatch = useDispatch();
 
@@ -22,7 +21,7 @@ const GenreFilter = () => {
 
     return (
         <div className={styles.filterContainer}>
-            <select onChange={handleFilter} value={genre}>
+            <select onChange={handleFilter} value={genres}>
                 <option value="">Filter by genre</option>
                 {genres?.map((genre) => (
                     <option key={genre.name} value={genre.name}>{genre.name}</option>
@@ -35,7 +34,7 @@ const GenreFilter = () => {
                     <input
                         type="radio"
                         value="API"
-                        checked={genre === "API"}
+                        checked={genres === "API"}
                         onChange={handleSourceFilter}
                     />
                     API
@@ -44,7 +43,7 @@ const GenreFilter = () => {
                     <input
                         type="radio"
                         value="Database"
-                        checked={genre === "Database"}
+                        checked={genres === "Database"}
                         onChange={handleSourceFilter}
                     />
                     Database
