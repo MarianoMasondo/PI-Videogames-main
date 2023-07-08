@@ -1,4 +1,4 @@
-import { ALL_GENRES, DETAIL_VIDEOGAMES, FILTER_GENRE, GET_VIDEOGAMES, SEARCH_VIDEOGAMES, SORT_VIDEOGAMES_ASC_DESC, SORT_VIDEOGAMES_RATING } from "./types";
+import { ALL_GENRES, DETAIL_VIDEOGAMES, FILTER_GENRES, GET_VIDEOGAMES, SEARCH_VIDEOGAMES, SORT_VIDEOGAMES_ASC_DESC, SORT_VIDEOGAMES_RATING } from "./types";
 
 const initialState = {
     Videogames: [],
@@ -14,18 +14,18 @@ const initialState = {
 const  reducer = (state = initialState, action) => {
     switch(action.type){
         case GET_VIDEOGAMES:
-            return { 
-                ...state,                 
+            return {
+                ...state,
                 Videogames: action.payload,
                 VideogamesCopy: action.payload};
         case DETAIL_VIDEOGAMES:
-            return { 
-                ...state, 
+            return {
+                ...state,
                 DetailGame: action.payload};
 
         case SEARCH_VIDEOGAMES:
             return {
-                ...state, 
+                ...state,
                 Videogames: action.payload};
 
         case ALL_GENRES:
@@ -34,7 +34,7 @@ const  reducer = (state = initialState, action) => {
                 genres: action.payload
             }
 
-        case FILTER_GENRE:
+        case FILTER_GENRES:
             const VideogamesCopy = state.VideogamesCopy;
             const gamesGenres =
                 action.payload === "all"
@@ -51,13 +51,13 @@ const  reducer = (state = initialState, action) => {
             }
 
         case SORT_VIDEOGAMES_ASC_DESC:
-            let videogamesSort = [...state.Videogames]; 
-  
+            let videogamesSort = [...state.Videogames];
+
             videogamesSort.sort((a, b) => {
             if (action.payload === "asc") {
-                return a.name.localeCompare(b.name); 
+                return a.name.localeCompare(b.name);
              } else {
-                return b.name.localeCompare(a.name); 
+                return b.name.localeCompare(a.name);
                 }
             });
                 return {
@@ -73,8 +73,7 @@ const  reducer = (state = initialState, action) => {
               ...state,
               Videogames: videogamesSortRating
           };
-          
-            
+
 
         default:
             return {...state};

@@ -2,3 +2,37 @@
     background-color: #1B6B93;
 }
 
+.cardContainer{
+    align-items:center;
+    justify-content: center;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 25px;
+}
+
+.filtersContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 95%;
+  }
+
+  .searchBarContainer {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+  }
+ .orderAscDesc{
+    display: flex;
+    justify-content: flex-end;
+    width: 15%;
+ }
+
+ .orderByRating {
+    display: flex;
+    justify-content: flex-end;
+    width: 15%;
+ }

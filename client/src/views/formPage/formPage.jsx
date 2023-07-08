@@ -28,8 +28,8 @@ const validate = (form) =>{
   if (!form.rating) {
     errors.rating = 'Insert a validate rating'
   }
-  if (!form.genre) {
-    errors.genre = 'Insert a validate genres'
+  if (!form.genres) {
+    errors.genres = 'Insert a validate genres'
   }
   return errors;
 }
@@ -107,7 +107,7 @@ const Form = () => {
   return (
     <div className={styles.formContainer}>
 
-      <form onSubmit={(e)=> handleSubmit(e)}>
+      <form onSubmit={(e)=> handleSubmit(e)} className={styles.form}>
         <section>
           <label htmlFor="name">Name: </label>
           <input 
