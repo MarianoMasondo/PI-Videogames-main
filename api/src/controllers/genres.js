@@ -17,6 +17,15 @@ const allGenres = async () => {
         await Genres.bulkCreate(genreData);
         return genreData;
     }
+
+    const genresFromDatabase = await Genres.findAll(
+        {
+          attributes: ["name"],  
+        }
+    );
+
+    const genreNamesFromDatabase = genresFromDatabase.map(genres => (genres));
+    return genreNamesFromDatabase;
 }
 
 module.exports = allGenres;

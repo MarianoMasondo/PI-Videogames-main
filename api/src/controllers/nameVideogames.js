@@ -1,6 +1,6 @@
 const axios = require("axios");
 const apiKey = process.env.API_KEY;
-const { Videogames } = require("../db");
+const { Videogames, Genres } = require("../db");
 const { Op } = require("sequelize");
 
 
@@ -18,6 +18,7 @@ const nameDataGames = async (name) => {
                 background_image,
                 released,
                 rating,
+                genres
             }) => ({
                 
                 id: id,
@@ -27,9 +28,9 @@ const nameDataGames = async (name) => {
                 image: background_image,
                 released: released,
                 rating: rating,
+                genres: genres.map(g => g.name)
             })
         );
-        console.log(apiData.length)
 
         const dbData = await Videogames.findAll({
             where: {
@@ -37,11 +38,37 @@ const nameDataGames = async (name) => {
                     [Op.iLike]: `%${name}%`,
                 },
             },
+            include:[{
+                model: Genres,
+                attributes: ["name"],
+                through:{
+                    attibutes: []
+                }
+            }],
             limit: 15,
         })
+        const dbDataGames = dbData.map(({
+            id,
+            name,
+            description,
+            platforms,
+            background_image,
+            released,
+            rating,
+            Genres
+        }) => ({
+            id: id,
+            name: name,
+            description: description,
+            platforms: platforms,
+            image: background_image,
+            released: released,
+            rating: rating,
+            genres: Genres.map(genre => genre.name)
+        }))
         
 
-        if(apiData.length === 0 && dbData.length === 0){
+        if(apiData.length === 0 && dbDataGames.length === 0){
             return {message: "No se encontraron videojuegos con este nombre"}
         }
 

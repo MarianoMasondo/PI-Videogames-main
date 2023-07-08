@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchVideogames } from "../../redux/actions";
 
-export default function SearchBar({onSearch}){
-  const dispatch = useDispatch()
+export default function SearchBar(){
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   
   const handleChange = (event) => {
@@ -14,15 +14,14 @@ export default function SearchBar({onSearch}){
 
   const handleSearch = (event) => {
     event.preventDefault();
-    dispatch(searchVideogames(name))
-    setName("");
+    dispatch(searchVideogames(name));
   }
     return(
         <div className={styles.container}>         
             <input 
               onChange={handleChange} 
               placeholder="Search..." 
-              type="seach" 
+              type="search" 
               value={name} 
               />
             <button 

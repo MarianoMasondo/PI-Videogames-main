@@ -20,9 +20,11 @@ export default function DetailPage(){
   },[dispatch, id]);
 
     return(
-      <div className={styles.detailContainer}$>         
+      <div className={styles.detailContainer}$> 
+      <div>
+        </div>        
             <h1>{DetailGame.name}</h1>
-            <div><img src={DetailGame.image} className={styles.image}/></div>
+            <div><img src={DetailGame.image} className={styles.image} alt="" /></div>
             <p>Description: {stripTags(DetailGame.description)}</p>
             <p>Rating: {DetailGame.rating}</p>
             <p>Released: {DetailGame.released}</p>
