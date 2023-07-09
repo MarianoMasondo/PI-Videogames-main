@@ -27,7 +27,7 @@ export default function DetailPage(){
             <p className={styles.description}>Description: {stripTags(DetailGame.description)}</p>
             <div className={styles.infoContainer}>
             <p className={styles.info}>Genres: {DetailGame.genres && DetailGame.genres.join(", ")}</p>           
-            <p className={styles.info}>Rating: {DetailGame.rating}</p>
+            <p className={styles.info}><span className={styles.infoTitle}>Rating:</span><br/>{DetailGame.rating}</p>
             <p className={styles.info}>Released: {DetailGame.released}</p>
             <p className={styles.info}>Platforms: {DetailGame.platforms && DetailGame.platforms.map(platform => platform.platform.name).join(", ")}</p>
             <p className={styles.info}>Id:{DetailGame.id}</p> 
