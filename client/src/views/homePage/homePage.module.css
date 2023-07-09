@@ -1,52 +1,21 @@
 .container{
     background-color: #1B6B93;
+    background-size: cover;
 }
 
 .cardContainer{
     align-items:center;
     justify-content: center;
-    border: 1px solid black;
+    border: 3px solid #164B60;
     display: flex;
     flex-direction: row;
     border-radius: 15px;
     flex-wrap: wrap;
     gap: 2em;
-    padding: 25px;
+    padding: 30px;
 }
 
-.filtersContainer {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 5%;
-  }
 
-  .searchBarContainer {
-    display: flex;
-    justify-content: center;
-    height: 25px;
-  }
-
- .orderAscDesc{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    width: 10%;    
-    position: relative;
-    padding: 10px;
-    height: 25px;
-    margin-left: 5%;
-  }        
  
-
- .orderByRating {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 10%;    
-  position: relative;
-  padding: 10px;
-  height: 25px;
-  margin-left: 5%;  
- }
 
  

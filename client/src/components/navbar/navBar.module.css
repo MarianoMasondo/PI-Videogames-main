@@ -1,37 +1,49 @@
-  .navBarContainer {
-    display: flex;
-    flex-direction: row;
-    background-color: #164B60;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px black;
-    padding: 5px;
-    text-align: center;
-  }
-  
-  .titleContainer {
-    display: flex;
-    justify-content: center;
-    color: #A2FF86;
-    text-align: center;
-    align-items: center;
-    margin: 0;
-  }
-  
-  .navBarContainer button {
-    background: transparent;
-    color: #fff;
-    font-size: 10px;
-    text-transform: uppercase;
-    font-weight: 600;
-    border: none;
-    padding: 10px 30px;
-    perspective: 30rem;
-    margin: 5px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.308);
-  }
-  
+.navBarContainer {
+  background: #164B60;
+  padding: 0px 60px 0px 60px;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+
+.titleContainer { 
+  margin: auto;
+  margin-left: 23.5%;
+  color: #A2FF86;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  margin-left: 10%;
+  width: 7%;
+  height: 7%;
+  border-radius: 20%;
+  animation: rotate 5s infinite linear;
+}
+
+.navButtons {
+  margin-right: 7%;
+  display: flex;  
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.navBarContainer button {
+  background: transparent;
+  color: #fff;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  padding: 10px 30px;
+  perspective: 30rem;
+  margin: 5px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.308);
+  align-self: flex-start; 
+}
   .navBarContainer button::before {
     content: '';
     display: block;

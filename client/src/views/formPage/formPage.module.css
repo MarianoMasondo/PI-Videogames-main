@@ -2,13 +2,15 @@
     background-color: #1B6B93;
     background-size: cover;
 }
+
 .form {
+    color: #fff;
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 40%; 
+    width: 30%; 
     margin: auto;   
-    gap: 10px;
+    gap: 5px;
     padding: 50px;
     background: linear-gradient(to bottom, #164B60, #4FC0D0);
     border-radius: 10px;
@@ -63,7 +65,7 @@
     border: none;
     border-radius: 5px;
     background-color: #A2FF86;
-    color: black;
+    color: #164B60;
     font-size: 17px;
     cursor: pointer;
     transform-style: preserve-3d;

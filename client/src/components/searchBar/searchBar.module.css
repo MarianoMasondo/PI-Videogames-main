@@ -1,14 +1,17 @@
-
 .container {
     display: flex;
     align-items: center;
     position: relative;
     padding: 10px;
-    height: 110px;
-}
+    margin-bottom: 10px;
+    justify-content: center;
+    height: 25px;
+    }
+
       
 .container input {    
     width: 250px;
+    margin-bottom: -20px;
     padding: 10px;
     border: none;
     border-radius: 20px;
@@ -22,6 +25,7 @@
     cursor: pointer;
     padding: 10px 25px;
     margin-left: 4px;
+    margin-bottom: -20px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;

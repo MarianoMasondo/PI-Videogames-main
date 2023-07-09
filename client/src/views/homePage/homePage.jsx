@@ -1,4 +1,4 @@
-import styles from "./homePage.module.css";
+import styles from "./homePage.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../components/searchBar/searchBar";
 import React, { useEffect, useState } from "react";
@@ -6,6 +6,8 @@ import { getVideogames, orderVideogames, orderVideogamesRating } from "../../red
 import GenderFilter from "../../components/filters/filters";
 import Card from "../../components/card/card";
 import Pagination from "../../components/pagination/pagination";
+import Order from "../../components/order/order";
+
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -55,20 +57,8 @@ export default function HomePage() {
       <div className={styles.filtersContainer}>
         <GenderFilter />
       </div>
-      <div className={`${styles.orderAscDesc}`}>
-        <select onChange={(e) => handleOrderAscDesc(e)}>
-          <option value="default">Select by order</option>
-          <option value="asc">Ascendent</option>
-          <option value="desc">Descendent</option>
-        </select>
-      </div>
-      <div className={`${styles.orderByRating}`}>
-        <select onChange={(e) => handleOrderRating(e)}>
-          <option value="default">Select by rating</option>
-          <option value="best">Best</option>
-          <option value="worst">Worst</option>
-        </select>
-      </div>
+
+      <Order handleOrderAscDesc={handleOrderAscDesc} handleOrderRating={handleOrderRating} />      
 
       <div className={`${styles.paginationContainerCards} ${styles.cardContainer}`}>
         {currentGames?.map((game) => {
