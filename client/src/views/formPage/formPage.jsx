@@ -28,8 +28,8 @@ const validate = (form) =>{
   if (!form.rating) {
     errors.rating = 'Insert a validate rating'
   }
-  if (!form.genres) {
-    errors.genres = 'Insert a validate genres'
+  if (form.genres.length === 0) {
+    errors.genres = 'Insert a validate genre'
   }
   return errors;
 }
@@ -109,8 +109,9 @@ const Form = () => {
 
       <form onSubmit={(e)=> handleSubmit(e)} className={styles.form}>
         <section>
-          <label htmlFor="name">Name: </label>
+          {/* <label htmlFor="name">Name: </label> */}
           <input 
+          placeholder='Name here...'
             type="text"
             name="name"
             value={form.name}
@@ -118,12 +119,13 @@ const Form = () => {
           />
         </section>
           {
-            errors.name && (<p>{errors.name}</p>)
+            errors.name && (<p className={styles['error-message']}>{errors.name}</p>)
           }
 
         <section>
-          <label htmlFor="description">Description: </label>
+          {/* <label htmlFor="description">Description: </label> */}
           <input 
+          placeholder='Description here...'
             type="text"
             name="description"
             onChange={handlerInputChange}
@@ -131,12 +133,13 @@ const Form = () => {
           />
         </section>
           {
-            errors.description && (<p>{errors.description}</p>)
+            errors.description && (<p className={styles['error-message']}>{errors.description}</p>)
           }
 
         <section>
-          <label htmlFor="platforms">Platforms: </label>
+          {/* <label htmlFor="platforms">Platforms: </label> */}
           <input 
+          placeholder='Plattforms here...'
             type="text"
             name="platforms"
             onChange={handlerInputChange}
@@ -144,12 +147,13 @@ const Form = () => {
           />
         </section>
           {
-            errors.platforms && (<p>{errors.platforms}</p>)
+            errors.platforms && (<p className={styles['error-message']}>{errors.platforms}</p>)
           }
 
         <section>
-          <label htmlFor="image">Image link: </label>
+          {/* <label htmlFor="image">Image link: </label> */}
           <input 
+          placeholder='Image link here...'
             type="url"
             name="image"
             onChange={handlerInputChange}
@@ -157,11 +161,11 @@ const Form = () => {
           />
         </section>
           {
-            errors.image && (<p>{errors.image}</p>)
+            errors.image && (<p className={styles['error-message']}>{errors.image}</p>)
           }
         
         <section>
-          <label htmlFor="released">Released: </label>
+          {/* <label htmlFor="released">Released: </label> */}
           <input 
             type="date"
             name="released"
@@ -170,12 +174,13 @@ const Form = () => {
           />
         </section>
           {
-            errors.released && (<p>{errors.released}</p>)
+            errors.released && (<p className={styles['error-message']}>{errors.released}</p>)
           }
 
         <section>
-          <label htmlFor="rating">Rating: </label>
+          {/* <label htmlFor="rating">Rating: </label> */}
           <input 
+          placeholder='Rating here...'
             type="number"
             name="rating"
             onChange={handlerInputChange}
@@ -183,13 +188,13 @@ const Form = () => {
           />
         </section>
           {
-            errors.rating && (<p>{errors.rating}</p>)
+            errors.rating && (<p className={styles['error-message']}>{errors.rating}</p>)
           }
 
         <section>
-          <label htmlFor="genres">Genres: </label>
+          {/* <label htmlFor="genres">Genres: </label> */}
           <select onChange={(e)=> handlerGenres(e)} defaultValue='default'>
-            <option value="default" disabled >Select Genre</option>
+            <option value="default" disabled >Select Genres</option>
             {
               genres?.map((genre, index) => (
                 <option key={index} value={genre.name}>
@@ -199,7 +204,7 @@ const Form = () => {
             }
           </select>
         </section>
-          {errors.genres && (<p>{errors.genres}</p>)}
+          {errors.genres && (<p className={styles['error-message']}>{errors.genres}</p>)}
         <button type="submit">Create Videogame</button>
       </form>
     </div>

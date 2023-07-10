@@ -42,7 +42,7 @@ const nameDataGames = async (name) => {
                 model: Genres,
                 attributes: ["name"],
                 through:{
-                    attibutes: []
+                    attributes: []
                 }
             }],
             limit: 15,

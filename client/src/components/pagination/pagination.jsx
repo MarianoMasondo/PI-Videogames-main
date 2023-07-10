@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './pagination.module.css'
 
-const Pagination = ({currentPage, gamesPerPage, allVideogames, paginate}) => {
+const Pagination = ({currentPage,gamesPerPage, allVideogames, paginate}) => {
 
   const pages = [];
   // redondea el numero de pagina para arriba totales
@@ -14,14 +14,18 @@ const Pagination = ({currentPage, gamesPerPage, allVideogames, paginate}) => {
 
   return (
     <nav className={style.paginationContainer}>
-      {
-        pages && pages.map(page => (
-          <button key={page} onClick={() => paginate(page)}>{page}
-          </button>
-        ))
-      }
+      {pages.map((page) => (
+        <button
+          key={page}
+          onClick={() => paginate(page)}
+          // className={currentPage === page ? style.active : ''}
+        >
+        {page}
+        </button>
+        ))}
     </nav>
-  )
+  );
+
 };
 
 export default Pagination;

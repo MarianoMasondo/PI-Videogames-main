@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { allGenres, filterGenre } from "../../redux/actions";
 
 const GenreFilter = () => {
-  const [selectedGenre, setSelectedGenre] = useState(""); // New state for the selected genre
+  const [selectedGenre, setSelectedGenre] = useState(""); 
   const genres = useSelector((state) => state.genres);
   const dispatch = useDispatch();
 
@@ -13,12 +13,12 @@ const GenreFilter = () => {
   }, [dispatch]);
 
   const handleFilter = (e) => {
-    setSelectedGenre(e.target.value); // Update the selected genre state
+    setSelectedGenre(e.target.value); 
     dispatch(filterGenre(e.target.value));
   };
 
   const handleSourceFilter = (e) => {
-    setSelectedGenre(e.target.value); // Update the selected genre state
+    setSelectedGenre(e.target.value);
     dispatch(filterGenre(e.target.value));
   };
 

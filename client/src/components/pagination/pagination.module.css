@@ -18,3 +18,8 @@
   .paginationContainer button:active{
     transform: scale(0.9)
   }
+
+  /* .paginationContainer button.active {
+    background-color: #164B60;
+    color: #A2FF86;
+  } */

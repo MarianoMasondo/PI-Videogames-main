@@ -63,13 +63,23 @@ export default function HomePage() {
       <div className={`${styles.paginationContainerCards} ${styles.cardContainer}`}>
         {currentGames?.map((game) => {
           return (
-            <Card key={game.id} id={game.id} name={game.name} image={game.image} genres={game.genres} rating={game.rating} />
+          <Card 
+            key={game.id} 
+            id={game.id} 
+            name={game.name} 
+            image={game.image} 
+            genres={game.genres} 
+            rating={game.rating} />
           );
         })}
       </div>
 
       <div className={styles.paginationContainer}>
-        <Pagination currentPage={currentPage} gamesPerPage={gamesPerPage} allVideogames={allVideogames.length} paginate={paginate} />
+        <Pagination 
+          currentPage={currentPage} 
+          gamesPerPage={gamesPerPage} 
+          allVideogames={allVideogames.length} 
+          paginate={paginate} />
       </div>
     </div>
   );
