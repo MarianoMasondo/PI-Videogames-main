@@ -10,7 +10,7 @@ export default function SearchBar(){
   const handleChange = (event) => {
     event.preventDefault();    
     setName(event.target.value);
-    //dispatch(searchVideogames(event.target.value)) // para buscar juegos que coincidan con la letra ingresada
+    dispatch(searchVideogames(event.target.value)) // para buscar juegos que coincidan con la letra ingresada
   };
 
   const handleSearch = (event) => {

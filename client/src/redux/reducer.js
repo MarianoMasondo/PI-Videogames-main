@@ -13,11 +13,13 @@ const initialState = {
 
 const  reducer = (state = initialState, action) => {
     switch(action.type){
+        
         case GET_VIDEOGAMES:
             return {
                 ...state,
                 Videogames: action.payload,
                 VideogamesCopy: action.payload};
+
         case DETAIL_VIDEOGAMES:
             return {
                 ...state,
@@ -36,11 +38,11 @@ const  reducer = (state = initialState, action) => {
             }
 
         case FILTER_GENRES:
-            const gamesCopy = state.VideogamesCopy;
+            const gamesCopy = [...state.VideogamesCopy];
             const gamesGenres =
                 action.payload === "all"
                 ? gamesCopy
-                : gamesCopy.filter((game) => game.genre.includes(action.payload))
+                : gamesCopy.filter((game) => game.genres.includes(action.payload))
             return {
                 ...state,
                 Videogames: gamesGenres,

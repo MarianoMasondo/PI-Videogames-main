@@ -27,6 +27,7 @@ const allDataVideogames = async () => {
             background_image,
             released,
             rating,
+            genres
         }) => ({
             
             id: id,
@@ -36,6 +37,7 @@ const allDataVideogames = async () => {
             image: background_image,
             released: released,
             rating: rating,
+            genres: genres.map(genre => genre.name)
         })
     )   
     console.log(dataGames.length)

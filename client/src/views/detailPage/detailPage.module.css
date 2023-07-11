@@ -1,8 +1,10 @@
 .container {
-    width: 100%; /* Ancho deseado del rectángulo */    
+    width: 100%; /* Ancho deseado del rectángulo */   
+    height: 700px; 
     background-color: #1B6B93;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .detailContainer {
@@ -10,11 +12,13 @@
   display: flex;
   flex-direction: column;
   padding: 5px;
+  margin-top: 10px;
   color: #1B6B93;
   width: 85%; 
   height: fit-content;
   align-items: center;
   border-radius: 30px;
+  border: 5px solid #164B60;
   
   
 }
