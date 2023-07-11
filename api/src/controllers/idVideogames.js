@@ -4,7 +4,7 @@ const { videoGames } = require("../db")
 
 const idDataGames = async (id) => {
     
-    if(id.length <= 4){
+    if(id.length <= 7){
         const URL = `https://api.rawg.io/api/games/${id}?key=${apiKey}&page_size=40`;
         
         const response = await axios.get(URL);

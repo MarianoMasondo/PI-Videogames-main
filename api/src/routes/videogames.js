@@ -7,8 +7,8 @@ const postCreateVideogames = require('../handlers/createVideogames');
 const videoRoutes = Router();
 
 videoRoutes.get("/", getAllVideogames);
-videoRoutes.get("/:id", getIdVideogames);
 videoRoutes.get("/name", getNameVideogames);
+videoRoutes.get("/:id", getIdVideogames);
 videoRoutes.post("/", postCreateVideogames);
 
 module.exports = videoRoutes;

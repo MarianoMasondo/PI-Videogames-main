@@ -1,15 +1,17 @@
 import React from "react";
 import Card from "../card/card";
-import styles from "./cards.module.css";
+import styles from "./nameSearch.module.css";
 import { useSelector } from "react-redux";
 
-export default function Cards({allVideogames, key, id, name, platforms, image, released, genres, rating}){
-    // const Videogames= useSelector(state => state.Videogames)
+
+export default function NameSearch(){
+    const searchName= useSelector(state => state.searchName)
+    console.log(searchName, "name");
     return(
         <div className={styles.container}>
-            {allVideogames.map((game) => (
+            {searchName.map((game) => (
                 <Card
-                key= {game.key}
+                key= {game.id}
                 id= {game.id}
                 name = {game.name}
                 platforms= {game.platforms}

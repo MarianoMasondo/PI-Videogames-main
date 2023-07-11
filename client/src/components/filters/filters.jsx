@@ -5,6 +5,7 @@ import { allGenres, filterGenre } from "../../redux/actions";
 
 const GenreFilter = () => {
   const [selectedGenre, setSelectedGenre] = useState(""); 
+  const [aux, setAux] = useState(false);
   const genres = useSelector((state) => state.genres);
   const dispatch = useDispatch();
 
@@ -15,6 +16,7 @@ const GenreFilter = () => {
   const handleFilter = (e) => {
     setSelectedGenre(e.target.value); 
     dispatch(filterGenre(e.target.value));
+    setAux(!aux);
   };
 
   const handleSourceFilter = (e) => {
@@ -25,8 +27,8 @@ const GenreFilter = () => {
   return (
     <div >
       <div className={styles.filterContainer}>
-      <select onChange={handleFilter} value={selectedGenre}>
-        <option value="">Filter by genre</option>
+      <select onChange={(e) => handleFilter(e)} value="default">
+        <option value="default">Filter by genre</option>
         {genres?.map((genre) => (
           <option key={genre.name} value={genre.name}>
             {genre.name}

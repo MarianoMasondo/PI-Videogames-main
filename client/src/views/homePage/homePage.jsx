@@ -4,7 +4,7 @@ import SearchBar from "../../components/searchBar/searchBar";
 import React, { useEffect, useState } from "react";
 import { getVideogames, orderVideogames, orderVideogamesRating } from "../../redux/actions";
 import GenderFilter from "../../components/filters/filters";
-import Card from "../../components/card/card";
+import Cards from "../../components/card/card";
 import Pagination from "../../components/pagination/pagination";
 import Order from "../../components/order/order";
 
@@ -63,13 +63,17 @@ export default function HomePage() {
       <div className={`${styles.paginationContainerCards} ${styles.cardContainer}`}>
         {currentGames?.map((game) => {
           return (
-          <Card 
+          <Cards 
+            allVideogames={allVideogames}
             key={game.id} 
             id={game.id} 
             name={game.name} 
+            platforms= {game.platforms}
             image={game.image} 
+            released = {game.released}
             genres={game.genres} 
-            rating={game.rating} />
+            rating={game.rating}
+             />
           );
         })}
       </div>

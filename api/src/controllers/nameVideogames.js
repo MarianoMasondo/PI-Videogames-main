@@ -13,7 +13,7 @@ const nameDataGames = async (name) => {
             ({
                 id,
                 name,
-                description,
+                // description,
                 platforms,
                 background_image,
                 released,
@@ -23,7 +23,7 @@ const nameDataGames = async (name) => {
                 
                 id: id,
                 name: name,
-                description: description,
+                // description: description,
                 platforms: platforms,
                 image: background_image,
                 released: released,

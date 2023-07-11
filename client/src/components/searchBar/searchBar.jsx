@@ -10,16 +10,21 @@ export default function SearchBar(){
   const handleChange = (event) => {
     event.preventDefault();    
     setName(event.target.value);
+   // dispatch(searchVideogames(event.target.value)) // para hacer busqueda de juego mientra se escribe letra por letra
   };
 
   const handleSearch = (event) => {
     event.preventDefault();
+    // if(!name){
+    //   return alert("This game doesnt exist") ver eeror de juego inexistente
+    // }
     dispatch(searchVideogames(name));
     setName("")
   }
   
-    return(
-        <div className={styles.container}>         
+    return( // ver form para aplicar con enter!!!
+        <div className={styles.container}>   
+        <form action=""> 
             <input 
               onChange={handleChange} 
               placeholder="Search..." 
@@ -31,6 +36,7 @@ export default function SearchBar(){
             type="submit"
             >Go
             </button>           
+          </form>      
         
       </div>
     )

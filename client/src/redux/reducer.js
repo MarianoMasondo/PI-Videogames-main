@@ -24,9 +24,10 @@ const  reducer = (state = initialState, action) => {
                 DetailGame: action.payload};
 
         case SEARCH_VIDEOGAMES:
+            let videoCopy= [...state.VideogamesCopy]
             return {
                 ...state,
-                Videogames: action.payload};
+                Videogames: videoCopy.filter(game => game.name.toLowerCase().includes(action.payload.toLowerCase()))};
 
         case ALL_GENRES:
             return {
@@ -35,16 +36,11 @@ const  reducer = (state = initialState, action) => {
             }
 
         case FILTER_GENRES:
-            const VideogamesCopy = state.VideogamesCopy;
+            const gamesCopy = state.VideogamesCopy;
             const gamesGenres =
                 action.payload === "all"
-                ? VideogamesCopy
-                : VideogamesCopy.filter((game) => {
-          if (game.genre && game.genre.includes(action.payload)) {
-            return true;
-            }
-            return false;
-        });
+                ? gamesCopy
+                : gamesCopy.filter((game) => game.genre.includes(action.payload))
             return {
                 ...state,
                 Videogames: gamesGenres,
