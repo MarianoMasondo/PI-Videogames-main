@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./filters.module.css";
+import styles from "./Filters.module.css";
 import { useEffect, useState } from "react";
 import { allGenres, filterGenre } from "../../redux/actions";
 

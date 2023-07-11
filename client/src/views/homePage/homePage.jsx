@@ -1,12 +1,12 @@
-import styles from "./homePage.module.css"
+import styles from "./HomePage.module.css"
 import { useDispatch, useSelector } from "react-redux";
-import SearchBar from "../../components/searchBar/searchBar";
 import React, { useEffect, useState } from "react";
 import { getVideogames, orderVideogames, orderVideogamesRating } from "../../redux/actions";
-import GenderFilter from "../../components/filters/filters";
-import Cards from "../../components/card/card";
-import Pagination from "../../components/pagination/pagination";
-import Order from "../../components/order/order";
+import GenderFilter from "../../components/filters/Filters";
+import Cards from "../../components/card/Card";
+import Order from "../../components/order/Order";
+import Pagination from "../../components/pagination/Pagination";
+import SearchBar from "../../components/searchBar/SearchBar";
 
 
 export default function HomePage() {
@@ -57,8 +57,7 @@ export default function HomePage() {
       <div className={styles.filtersContainer}>
         <GenderFilter />
       </div>
-
-      <Order handleOrderAscDesc={handleOrderAscDesc} handleOrderRating={handleOrderRating} />      
+      <Order handleOrderAscDesc={handleOrderAscDesc} handleOrderRating={handleOrderRating} />    
 
       <div className={`${styles.paginationContainerCards} ${styles.cardContainer}`}>
         {currentGames?.map((game) => {
@@ -79,7 +78,7 @@ export default function HomePage() {
       </div>
 
       <div className={styles.paginationContainer}>
-        <Pagination 
+        <Pagination
           currentPage={currentPage} 
           gamesPerPage={gamesPerPage} 
           allVideogames={allVideogames.length} 

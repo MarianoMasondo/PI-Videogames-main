@@ -1,4 +1,4 @@
-import styles from "./searchBar.module.css";
+import styles from "./SearchBar.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchVideogames } from "../../redux/actions";
@@ -10,7 +10,7 @@ export default function SearchBar(){
   const handleChange = (event) => {
     event.preventDefault();    
     setName(event.target.value);
-   // dispatch(searchVideogames(event.target.value)) // para hacer busqueda de juego mientra se escribe letra por letra
+    //dispatch(searchVideogames(event.target.value)) // para buscar juegos que coincidan con la letra ingresada
   };
 
   const handleSearch = (event) => {
@@ -22,7 +22,7 @@ export default function SearchBar(){
     setName("")
   }
   
-    return( // ver form para aplicar con enter!!!
+    return( 
         <div className={styles.container}>   
         <form action=""> 
             <input 
@@ -38,6 +38,6 @@ export default function SearchBar(){
             </button>           
           </form>      
         
-      </div>
-    )
+        </div>
+    ) 
 };

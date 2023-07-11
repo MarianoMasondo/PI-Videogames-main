@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./order.module.css";
+import styles from "./Order.module.css";
 
 const Order = ({ handleOrderAscDesc, handleOrderRating }) => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './pagination.module.css'
+import style from './Pagination.module.css'
 
 const Pagination = ({currentPage,gamesPerPage, allVideogames, paginate}) => {
 

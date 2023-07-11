@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react'
-import styles from './formPage.module.css'
+import styles from './FormPage.module.css'
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { allGenres } from '../../redux/actions';

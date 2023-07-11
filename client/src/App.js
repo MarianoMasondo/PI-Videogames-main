@@ -1,11 +1,11 @@
 import './App.css';
 import React from 'react';
 import{ Route, Routes, useLocation} from "react-router-dom";
-import LandingPage from './views/landingPage/landingPage.jsx';
-import HomePage from './views/homePage/homePage.jsx';
-import DetailPage from './views/detailPage/detailPage.jsx';
-import FormPage from './views/formPage/formPage';
-import NavBar from './components/navbar/navbar';
+import LandingPage from './views/landingPage/LandingPage.jsx';
+import DetailPage from './views/detailPage/DetailPage.jsx';
+import FormPage from './views/formPage/FormPage.jsx';
+import NavBar from './components/navbar/NavBar.jsx';
+import HomePage from './views/homePage/HomePage.jsx';
 
 function App() {
   

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {detailVideogames} from "../../redux/actions";
-import styles from "./detailPage.module.css";
+import styles from "./DetailPage.module.css";
 
 export default function DetailPage(){
   const {id} = useParams();

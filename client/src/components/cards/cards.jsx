@@ -1,10 +1,9 @@
 import React from "react";
-import Card from "../card/card";
-import styles from "./cards.module.css";
-import { useSelector } from "react-redux";
+import styles from "./Cards.module.css";
+import Card from "../card/Card";
 
 export default function Cards({allVideogames, key, id, name, platforms, image, released, genres, rating}){
-    // const Videogames= useSelector(state => state.Videogames)
+    
     return(
         <div className={styles.container}>
             {allVideogames.map((game) => (
