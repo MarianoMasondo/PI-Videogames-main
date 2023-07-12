@@ -23,7 +23,7 @@ const idDataGames = async (id) => {
         console.log(idDataGames.length)
         return idDataGame;
     }else{
-        const searchById = await videoGames.findByPk(id, {
+        const searchById = await videoGames?.findByPk(id, {
             include: {
                 model: Genres,
                 attributes: ["name"],
