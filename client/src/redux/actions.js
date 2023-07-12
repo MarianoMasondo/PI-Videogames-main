@@ -22,14 +22,6 @@ export function detailVideogames(id){
 }
 
 export function searchVideogames(name) {
-    // return async function (dispatch){
-    //   const apiData = await axios.get(`http://localhost:3001/videogames/name?name=${name}`);
-    //   const infoVideogames = apiData.data;
-    //   dispatch({
-    //     type: SEARCH_VIDEOGAMES,
-    //     payload: infoVideogames,
-    //   });
-    // };
     return {
       type: SEARCH_VIDEOGAMES, 
       payload: name,
