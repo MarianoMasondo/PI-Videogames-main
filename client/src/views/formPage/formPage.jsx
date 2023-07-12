@@ -7,10 +7,10 @@ import { allGenres } from '../../redux/actions';
 
 const validate = (form) =>{
   let errors = {}
-  if (!form.name) {
+  if (!form.name.trim()) {
     errors.name = 'Insert a validate name'
   }
-  if (!form.description) {
+  if (!form.description.trim()) {
     errors.description = 'Insert a validate description'
   }
   if (!form.platforms) {

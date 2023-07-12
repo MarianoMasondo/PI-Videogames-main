@@ -1,4 +1,4 @@
-import { ALL_GENRES, DETAIL_VIDEOGAMES, FILTER_GENRES, GET_VIDEOGAMES, SEARCH_VIDEOGAMES, SORT_VIDEOGAMES_ASC_DESC, SORT_VIDEOGAMES_RATING } from "./types";
+import { ALL_GENRES, DETAIL_VIDEOGAMES, FILTER_GENRES, GET_VIDEOGAMES, SEARCH_VIDEOGAMES, SORT_VIDEOGAMES_ASC_DESC, SORT_VIDEOGAMES_RATING, FILTER_APIDB } from "./types";
 
 const initialState = {
     Videogames: [],
@@ -48,6 +48,17 @@ const  reducer = (state = initialState, action) => {
                 Videogames: gamesGenres,
             }
 
+        case FILTER_APIDB:
+            const apiDdCopy = state.VideogamesCopy;
+            const gamesApiDb =
+                action.payload === "Database"
+                ? apiDdCopy.filter((game) => game.createDB)
+                : apiDdCopy.filter((game) => !game.createDB)
+            return {
+                ...state,
+                Videogames: action.payload === "all" ? apiDdCopy : gamesApiDb
+            }
+            
         case SORT_VIDEOGAMES_ASC_DESC:
             let videogamesSort = [...state.Videogames];
 

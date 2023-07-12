@@ -1,10 +1,10 @@
 import axios from "axios";
-import { GET_VIDEOGAMES, SEARCH_VIDEOGAMES, DETAIL_VIDEOGAMES, ALL_GENRES, SORT_VIDEOGAMES_ASC_DESC, SORT_VIDEOGAMES_RATING, FILTER_GENRES } from "./types";
+import { GET_VIDEOGAMES, SEARCH_VIDEOGAMES, DETAIL_VIDEOGAMES, ALL_GENRES, SORT_VIDEOGAMES_ASC_DESC, SORT_VIDEOGAMES_RATING, FILTER_GENRES, FILTER_APIDB } from "./types";
 
 export function getVideogames(){
     return async function(dispatch){
         const apiData = await axios.get(`http://localhost:3001/videogames`);
-        const Videogames = apiData.data.slice(0, 100);
+        const Videogames = apiData.data
         dispatch({type: GET_VIDEOGAMES, 
             payload: Videogames});
     };
@@ -31,6 +31,12 @@ export function searchVideogames(name) {
   export const filterGenre = (payload) => {
     return{
       type: FILTER_GENRES,
+      payload
+    }
+  }
+  export const filterApiDb = (payload) => {
+    return{
+      type: FILTER_APIDB,
       payload
     }
   }

@@ -55,7 +55,7 @@ export default function HomePage() {
         <SearchBar />
       </div>
       <div className={styles.filtersContainer}>
-        <GenderFilter />
+        <GenderFilter currentPage = { currentPage } setCurrentPage = {setCurrentPage} />
       </div>
       <Order handleOrderAscDesc={handleOrderAscDesc} handleOrderRating={handleOrderRating} />    
 
@@ -72,6 +72,7 @@ export default function HomePage() {
             released = {game.released}
             genres={game.genres} 
             rating={game.rating}
+            createDb={game.createDb}
              />
           );
         })}

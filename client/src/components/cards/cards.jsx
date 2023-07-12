@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Cards.module.css";
 import Card from "../card/Card";
 
-export default function Cards({allVideogames, key, id, name, platforms, image, released, genres, rating}){
+export default function Cards({allVideogames, createDb}){
     
     return(
         <div className={styles.container}>
@@ -16,6 +16,7 @@ export default function Cards({allVideogames, key, id, name, platforms, image, r
                 released = {game.released}
                 rating = {game.rating}
                 genres = {game.genres}
+                createDb = {game.createDb}
                 />
             ))}
         </div>

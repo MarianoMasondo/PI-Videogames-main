@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Filters.module.css";
 import { useEffect, useState } from "react";
-import { allGenres, filterGenre } from "../../redux/actions";
+import { allGenres, filterApiDb, filterGenre } from "../../redux/actions";
 
-const GenreFilter = () => {
+const GenreFilter = (props) => {
   const [selectedGenre, setSelectedGenre] = useState(""); 
   const [aux, setAux] = useState(false);
   const genres = useSelector((state) => state.genres);
@@ -17,11 +17,13 @@ const GenreFilter = () => {
     setSelectedGenre(e.target.value); 
     dispatch(filterGenre(e.target.value));
     setAux(!aux);
+    props.setCurrentPage(1);
   };
 
   const handleSourceFilter = (e) => {
     setSelectedGenre(e.target.value);
-    dispatch(filterGenre(e.target.value));
+    dispatch(filterApiDb(e.target.value));
+    
   };
 
   return (
@@ -38,8 +40,17 @@ const GenreFilter = () => {
       </div>
 
       <div className={styles.filterContainerinput}>
-        <label>
           <span>Filter by source:</span>
+        <label>
+          <input
+            type="radio"
+            value="all"
+            checked={selectedGenre === "all"}
+            onChange={handleSourceFilter}
+            />
+          All
+        </label>
+        <label>
           <input
             type="radio"
             value="API"
