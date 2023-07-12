@@ -76,13 +76,12 @@ const allDataVideogames = async () => {
     }))
     
 
-    // // if(apiData.length === 0 && dbDataGames.length === 0){
-    // //     return {message: "No se encontraron videojuegos con este nombre"}
-    // // }
+    // if(dataGames.length === 0 && dbDataGames.length === 0){
+    //     return {message: "No se encontraron videojuegos con este nombre"}
+    // }
 
     const allData = [...dataGames, ...dbDataGames];
     return allData;
-    //return dataGames;
     
 }
 

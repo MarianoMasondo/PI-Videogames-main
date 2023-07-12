@@ -7,7 +7,7 @@ export default function NavBar(){
         <img src="https://assets.soyhenry.com/LOGO-REDES-01_og.jpg" alt="Logo" className={styles.logo} />
             <div className={styles.titleContainer}>
                 <h1>SPHERE</h1>
-                <h3>The Henry´s Videgames App</h3>
+                <h3>The Henry´s Videogames App</h3>
             </div>
             <div className={styles.navButtons}>
             <Link to="/home">
