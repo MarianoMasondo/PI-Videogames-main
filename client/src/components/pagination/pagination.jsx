@@ -16,7 +16,7 @@ const Pagination = ({currentPage,gamesPerPage, allVideogames, paginate}) => {
         <button
           key={page}
           onClick={() => paginate(page)}
-          // className={currentPage === page ? style.active : ''}
+          className={currentPage === page ? style.active : ''}
         >
         {page}
         </button>

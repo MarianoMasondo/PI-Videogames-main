@@ -28,7 +28,7 @@ const GenreFilter = () => {
     <div >
       <div className={styles.filterContainer}>
       <select onChange={(e) => handleFilter(e)} value="default">
-        <option value="default">Filter by genre</option>
+        <option value="default">Genre Filter</option>
         {genres?.map((genre) => (
           <option key={genre.name} value={genre.name}>
             {genre.name}
