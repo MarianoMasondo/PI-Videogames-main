@@ -1,42 +1,40 @@
 .container {
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding: 10px;
-    margin-bottom: 10px;
-    justify-content: center;
-    height: 25px;
-    }
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+  height: 25px;
+}
 
-      
-.container input {    
-    width: 250px;
-    margin-bottom: -20px;
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-      
+.container input {
+  width: 250px;
+  margin-bottom: -20px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 .container button {
-    background-color: #4FC0D0;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    padding: 10px 25px;
-    margin-left: 4px;
-    margin-bottom: -20px;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    top: 0;
-    right: 0;
-    transition: .9s ease;
+  background-color: #4fc0d0;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 25px;
+  margin-left: 4px;
+  margin-bottom: -20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  top: 0;
+  right: 0;
+  transition: 0.9s ease;
 }
-      
+
 .container button[type="submit"]:hover {
-    transform: scale(1.1);
-    color: rgb(255, 255, 255);
-    background-color: #A2FF86;
+  transform: scale(1.1);
+  color: rgb(255, 255, 255);
+  background-color: #a2ff86;
 }
-      

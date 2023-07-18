@@ -1,45 +1,43 @@
 .landingContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-image: url("https://www.cope.es/blogs/gamelover/wp-content/uploads/sites/13/2022/11/gameLover_04112022-725x353.png");
-    background-size: cover;
-    background-position: center;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("https://www.cope.es/blogs/gamelover/wp-content/uploads/sites/13/2022/11/gameLover_04112022-725x353.png");
+  background-size: cover;
+  background-position: center;
+}
 
-  .titleContainer{
-    color: #A2FF86;
-    margin: 0;
-    margin-top: 20px;
-  }
+.titleContainer {
+  color: #a2ff86;
+  margin: 0;
+  margin-top: 20px;
+}
 
-  .subTitleContainer{
-    color: #A2FF86;
-  }  
+.subTitleContainer {
+  color: #a2ff86;
+}
 
 .landingContainer button {
-    padding: 10px 20px;
-    border: none;
-    font-size: 17px;
-    color: #fff;
-    border-radius: 7px;
-    letter-spacing: 4px;
-    font-weight: 700;
-    text-transform: uppercase;
-    transition: 0.5s;
-    transition-property: box-shadow;    
-  }
-  
+  padding: 10px 20px;
+  border: none;
+  font-size: 17px;
+  color: #fff;
+  border-radius: 7px;
+  letter-spacing: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: 0.5s;
+  transition-property: box-shadow;
+}
+
 .landingContainer button {
-    background: rgb(0,140,255);
-    box-shadow: 0 0 25px rgb(0,140,255);
-  }
-  
+  background: rgb(0, 140, 255);
+  box-shadow: 0 0 25px rgb(0, 140, 255);
+}
+
 .landingContainer button:hover {
-    box-shadow: 0 0 5px rgb(0,140,255),
-                0 0 25px rgb(0,140,255),
-                0 0 50px rgb(0,140,255),
-                0 0 100px rgb(0,140,255);
-  }
+  box-shadow: 0 0 5px rgb(0, 140, 255), 0 0 25px rgb(0, 140, 255),
+    0 0 50px rgb(0, 140, 255), 0 0 100px rgb(0, 140, 255);
+}

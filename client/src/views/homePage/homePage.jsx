@@ -1,13 +1,16 @@
-import styles from "./HomePage.module.css"
+import styles from "./HomePage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { getVideogames, orderVideogames, orderVideogamesRating } from "../../redux/actions";
+import {
+  getVideogames,
+  orderVideogames,
+  orderVideogamesRating,
+} from "../../redux/actions";
 import GenderFilter from "../../components/filters/Filters";
 import Cards from "../../components/card/Card";
 import Order from "../../components/order/Order";
 import Pagination from "../../components/pagination/Pagination";
 import SearchBar from "../../components/searchBar/SearchBar";
-
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -55,35 +58,44 @@ export default function HomePage() {
         <SearchBar />
       </div>
       <div className={styles.filtersContainer}>
-        <GenderFilter currentPage = { currentPage } setCurrentPage = {setCurrentPage} />
+        <GenderFilter
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
-      <Order handleOrderAscDesc={handleOrderAscDesc} handleOrderRating={handleOrderRating} />    
+      <Order
+        handleOrderAscDesc={handleOrderAscDesc}
+        handleOrderRating={handleOrderRating}
+      />
 
-      <div className={`${styles.paginationContainerCards} ${styles.cardContainer}`}>
+      <div
+        className={`${styles.paginationContainerCards} ${styles.cardContainer}`}
+      >
         {currentGames?.map((game) => {
           return (
-          <Cards 
-            allVideogames={allVideogames}
-            key={game.id} 
-            id={game.id} 
-            name={game.name} 
-            platforms= {game.platforms}
-            image={game.image} 
-            released = {game.released}
-            genres={game.genres} 
-            rating={game.rating}
-            createDb={game.createDb}
-             />
+            <Cards
+              allVideogames={allVideogames}
+              key={game.id}
+              id={game.id}
+              name={game.name}
+              platforms={game.platforms}
+              image={game.image}
+              released={game.released}
+              genres={game.genres}
+              rating={game.rating}
+              createDb={game.createDb}
+            />
           );
         })}
       </div>
 
       <div className={styles.paginationContainer}>
         <Pagination
-          currentPage={currentPage} 
-          gamesPerPage={gamesPerPage} 
-          allVideogames={allVideogames.length} 
-          paginate={paginate} />
+          currentPage={currentPage}
+          gamesPerPage={gamesPerPage}
+          allVideogames={allVideogames.length}
+          paginate={paginate}
+        />
       </div>
     </div>
   );

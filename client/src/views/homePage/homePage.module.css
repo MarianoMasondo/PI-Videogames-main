@@ -1,21 +1,16 @@
-.container{
-    background-color: #1B6B93;
-    background-size: cover;
+.container {
+  background-color: #1b6b93;
+  background-size: cover;
 }
 
-.cardContainer{
-    align-items:center;
-    justify-content: center;
-    border: 3px solid #164B60;
-    display: flex;
-    flex-direction: row;
-    border-radius: 15px;
-    flex-wrap: wrap;
-    gap: 2em;
-    padding: 50px;
+.cardContainer {
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #164b60;
+  display: flex;
+  flex-direction: row;
+  border-radius: 15px;
+  flex-wrap: wrap;
+  gap: 2em;
+  padding: 50px;
 }
-
-
- 
-
- 

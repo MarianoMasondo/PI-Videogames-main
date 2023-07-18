@@ -1,25 +1,24 @@
+.paginationContainer {
+  margin: 14px;
+}
 
-.paginationContainer{
-    margin: 14px;    
-  }
-  
-  .paginationContainer button{
-    margin-right: 8px;
-    padding: 10px 15px;
-    border-radius: 10%;
-    cursor: pointer;
-  }
-  
-  .paginationContainer button:hover{
-    background-color: #164B60;
-    color: #A2FF86;
-  }
-  
-  .paginationContainer button:active{
-    transform: scale(0.9)
-  }
+.paginationContainer button {
+  margin-right: 8px;
+  padding: 10px 15px;
+  border-radius: 10%;
+  cursor: pointer;
+}
 
-  .paginationContainer button.active {
-    background-color: #164B60;
-    color: #A2FF86;
-  }
+.paginationContainer button:hover {
+  background-color: #164b60;
+  color: #a2ff86;
+}
+
+.paginationContainer button:active {
+  transform: scale(0.9);
+}
+
+.paginationContainer button.active {
+  background-color: #164b60;
+  color: #a2ff86;
+}

@@ -3,6 +3,6 @@ const getAllGenres = require("../handlers/genres");
 
 const genresRoutes = Router();
 
-genresRoutes.get("/", getAllGenres)
+genresRoutes.get("/", getAllGenres);
 
 module.exports = genresRoutes;
