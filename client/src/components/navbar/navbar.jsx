@@ -8,7 +8,7 @@ export default function NavBar() {
     <nav className={styles.navBarContainer}>
       <Link to="/home" className={styles.logoArea}>
         <div className={styles.logoOrb}></div>
-        <span className={styles.logoText}>SPHERE</span>
+        <span className={styles.logoText}>VIDEOGAMES</span>
       </Link>
 
       <div className={styles.navButtons}>
