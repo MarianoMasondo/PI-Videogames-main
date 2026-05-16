@@ -1,39 +1,51 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import styles from "./FormPage.module.css";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 import { allGenres } from "../../redux/actions";
 
 const validate = (form) => {
-  let errors = {};
-  if (!form.name) {
-    errors.name = "Insert a validate name";
+  const errors = {};
+
+  if (!form.name.trim()) {
+    errors.name = "Insert a valid name";
   }
-  if (!form.description) {
-    errors.description = "Insert a validate description";
+
+  if (!form.description.trim()) {
+    errors.description = "Insert a valid description";
   }
-  if (!form.platforms) {
-    errors.platforms = "Insert a validates platforms";
+
+  if (!form.platforms.trim()) {
+    errors.platforms = "Insert valid platforms";
   }
-  if (!form.image) {
-    errors.image = !form.image.includes("https://" || "http://")
-      ? "Insert a validate URL image"
-      : "";
+
+  if (!form.image.trim()) {
+    errors.image = "Insert a valid image URL";
+  } else if (!form.image.startsWith("http://") && !form.image.startsWith("https://")) {
+    errors.image = "Image URL must start with http:// or https://";
   }
+
   if (!form.released) {
-    errors.released = "Insert a validate released";
+    errors.released = "Insert a valid release date";
   }
+
   if (!form.rating) {
-    errors.rating = "Insert a validate rating";
+    errors.rating = "Insert a valid rating";
+  } else if (Number(form.rating) < 0 || Number(form.rating) > 5) {
+    errors.rating = "Rating must be between 0 and 5";
   }
+
   if (form.genres.length === 0) {
-    errors.genres = "Insert a validate genre";
+    errors.genres = "Select at least one genre";
   }
+
   return errors;
 };
 
-const Form = () => {
+const FormPage = () => {
+  const dispatch = useDispatch();
+  const genres = useSelector((state) => state.genres);
+
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -44,175 +56,255 @@ const Form = () => {
     genres: [],
   });
 
-  // errores en el formularios
-  const [errors, setErrors] = useState({
-    name: true,
-    description: true,
-    platforms: true,
-    image: true,
-    released: true,
-    rating: true,
-    genres: true,
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:3001/videogames", form)
-      .then((res) => alert("Game created successfully"))
-      .catch((err) => alert("Please fill in all the fields"));
-    setForm({
-      name: "",
-      description: "",
-      platforms: "",
-      image: "",
-      released: "",
-      rating: "",
-      genres: [],
-    });
-  };
-
-  const handlerInputChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-    setErrors(
-      validate({
-        ...form,
-        [e.target.name]: e.target.value,
-      })
-    );
-  };
-
-  const dispatch = useDispatch();
-  const genres = useSelector((state) => state.genres);
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     dispatch(allGenres());
   }, [dispatch]);
 
-  const handlerGenres = (event) => {
-    if (!form.genres.includes(event.target.value)) {
-      setForm({
+  const handlerInputChange = (e) => {
+    const updatedForm = {
+      ...form,
+      [e.target.name]: e.target.value,
+    };
+
+    setForm(updatedForm);
+    setErrors(validate(updatedForm));
+  };
+
+  const handlerGenres = (e) => {
+    const selectedGenre = e.target.value;
+
+    if (selectedGenre === "default") return;
+
+    if (!form.genres.includes(selectedGenre)) {
+      const updatedForm = {
         ...form,
-        genres: [...form.genres, event.target.value],
+        genres: [...form.genres, selectedGenre],
+      };
+
+      setForm(updatedForm);
+      setErrors(validate(updatedForm));
+    }
+  };
+
+  const removeGenre = (genreToRemove) => {
+    const updatedForm = {
+      ...form,
+      genres: form.genres.filter((genre) => genre !== genreToRemove),
+    };
+
+    setForm(updatedForm);
+    setErrors(validate(updatedForm));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+
+    const formErrors = validate(form);
+    setErrors(formErrors);
+
+    if (Object.keys(formErrors).length > 0) {
+      return;
+    }
+
+    try {
+      await axios.post("http://localhost:3001/videogames", form);
+
+      alert("Game created successfully");
+
+      setForm({
+        name: "",
+        description: "",
+        platforms: "",
+        image: "",
+        released: "",
+        rating: "",
+        genres: [],
       });
-      setErrors(
-        validate({
-          ...form,
-          genres: [...form.genres, event.target.value],
-        })
-      );
+
+      setErrors({});
+      setSubmitted(false);
+    } catch (error) {
+      alert("Please fill in all the fields");
     }
   };
 
   return (
-    <div className={styles.formContainer}>
-      <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
-        <section>
-          {/* <label htmlFor="name">Name: </label> */}
-          <input
-            placeholder="Name here..."
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handlerInputChange}
-          />
-        </section>
-        {errors.name && (
-          <p className={styles["error-message"]}>{errors.name}</p>
-        )}
+    <main className={styles.page}>
+      <section className={styles.formCard}>
+        <div className={styles.leftPanel}>
+          <span className={styles.badge}>CREATE MODE</span>
 
-        <section>
-          {/* <label htmlFor="description">Description: </label> */}
-          <input
-            placeholder="Description here..."
-            type="text"
-            name="description"
-            onChange={handlerInputChange}
-            value={form.description}
-          />
-        </section>
-        {errors.description && (
-          <p className={styles["error-message"]}>{errors.description}</p>
-        )}
+          <h1>Create Videogame</h1>
 
-        <section>
-          {/* <label htmlFor="platforms">Platforms: </label> */}
-          <input
-            placeholder="Plattforms here..."
-            type="text"
-            name="platforms"
-            onChange={handlerInputChange}
-            value={form.platforms}
-          />
-        </section>
-        {errors.platforms && (
-          <p className={styles["error-message"]}>{errors.platforms}</p>
-        )}
+          <p>
+            Add a new title to your videogame library. Complete the fields,
+            select genres and launch it into your collection.
+          </p>
 
-        <section>
-          {/* <label htmlFor="image">Image link: </label> */}
-          <input
-            placeholder="Image link here..."
-            type="url"
-            name="image"
-            onChange={handlerInputChange}
-            value={form.image}
-          />
-        </section>
-        {errors.image && (
-          <p className={styles["error-message"]}>{errors.image}</p>
-        )}
+          <div className={styles.previewBox}>
+            <div className={styles.previewImage}>
+              {form.image ? (
+                <img src={form.image} alt={form.name || "Game preview"} />
+              ) : (
+                <span>IMAGE PREVIEW</span>
+              )}
+            </div>
 
-        <section>
-          {/* <label htmlFor="released">Released: </label> */}
-          <input
-            type="date"
-            name="released"
-            onChange={handlerInputChange}
-            value={form.released}
-          />
-        </section>
-        {errors.released && (
-          <p className={styles["error-message"]}>{errors.released}</p>
-        )}
+            <div className={styles.previewInfo}>
+              <h2>{form.name || "New Videogame"}</h2>
+              <p>{form.platforms || "Platforms will appear here"}</p>
+              <strong>⭐ {form.rating || "0.0"}</strong>
+            </div>
+          </div>
+        </div>
 
-        <section>
-          {/* <label htmlFor="rating">Rating: </label> */}
-          <input
-            placeholder="Rating here..."
-            type="number"
-            name="rating"
-            onChange={handlerInputChange}
-            value={form.rating}
-          />
-        </section>
-        {errors.rating && (
-          <p className={styles["error-message"]}>{errors.rating}</p>
-        )}
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.inputGroup}>
+            <label>Name</label>
+            <input
+              className={styles.input}
+              type="text"
+              name="name"
+              value={form.name}
+              placeholder="Grand Theft Auto V"
+              onChange={handlerInputChange}
+            />
+            {submitted && errors.name && (
+              <span className={styles.errorMessage}>{errors.name}</span>
+            )}
+          </div>
 
-        <section>
-          {/* <label htmlFor="genres">Genres: </label> */}
-          <select onChange={(e) => handlerGenres(e)} defaultValue="default">
-            <option value="default" disabled>
-              Select Genres
-            </option>
-            {genres?.map((genre, index) => (
-              <option key={index} value={genre.name}>
-                {genre.name}
-              </option>
-            ))}
-          </select>
-        </section>
-        {errors.genres && (
-          <p className={styles["error-message"]}>{errors.genres}</p>
-        )}
-        <button type="submit">Create Videogame</button>
-      </form>
-    </div>
+          <div className={styles.inputGroup}>
+            <label>Description</label>
+            <textarea
+              className={styles.textarea}
+              name="description"
+              value={form.description}
+              placeholder="Write a short description..."
+              onChange={handlerInputChange}
+            />
+            {submitted && errors.description && (
+              <span className={styles.errorMessage}>{errors.description}</span>
+            )}
+          </div>
+
+          <div className={styles.twoColumns}>
+            <div className={styles.inputGroup}>
+              <label>Platforms</label>
+              <input
+                className={styles.input}
+                type="text"
+                name="platforms"
+                value={form.platforms}
+                placeholder="PC, PlayStation, Xbox"
+                onChange={handlerInputChange}
+              />
+              {submitted && errors.platforms && (
+                <span className={styles.errorMessage}>{errors.platforms}</span>
+              )}
+            </div>
+
+            <div className={styles.inputGroup}>
+              <label>Rating</label>
+              <input
+                className={styles.input}
+                type="number"
+                name="rating"
+                value={form.rating}
+                min="0"
+                max="5"
+                step="0.01"
+                placeholder="4.50"
+                onChange={handlerInputChange}
+              />
+              {submitted && errors.rating && (
+                <span className={styles.errorMessage}>{errors.rating}</span>
+              )}
+            </div>
+          </div>
+
+          <div className={styles.twoColumns}>
+            <div className={styles.inputGroup}>
+              <label>Release date</label>
+              <input
+                className={styles.input}
+                type="date"
+                name="released"
+                value={form.released}
+                onChange={handlerInputChange}
+              />
+              {submitted && errors.released && (
+                <span className={styles.errorMessage}>{errors.released}</span>
+              )}
+            </div>
+
+            <div className={styles.inputGroup}>
+              <label>Genres</label>
+              <select
+                className={styles.select}
+                onChange={handlerGenres}
+                defaultValue="default"
+              >
+                <option value="default" disabled>
+                  Select genres
+                </option>
+
+                {genres?.map((genre) => (
+                  <option key={genre.id || genre.name} value={genre.name}>
+                    {genre.name}
+                  </option>
+                ))}
+              </select>
+
+              {submitted && errors.genres && (
+                <span className={styles.errorMessage}>{errors.genres}</span>
+              )}
+            </div>
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label>Image URL</label>
+            <input
+              className={styles.input}
+              type="text"
+              name="image"
+              value={form.image}
+              placeholder="https://image-url.com/game.jpg"
+              onChange={handlerInputChange}
+            />
+            {submitted && errors.image && (
+              <span className={styles.errorMessage}>{errors.image}</span>
+            )}
+          </div>
+
+          <div className={styles.selectedGenres}>
+            {form.genres.length > 0 ? (
+              form.genres.map((genre) => (
+                <button
+                  key={genre}
+                  type="button"
+                  className={styles.genreTag}
+                  onClick={() => removeGenre(genre)}
+                >
+                  {genre} ×
+                </button>
+              ))
+            ) : (
+              <span className={styles.emptyGenres}>No genres selected yet</span>
+            )}
+          </div>
+
+          <button type="submit" className={styles.submitButton}>
+            + Create Videogame
+          </button>
+        </form>
+      </section>
+    </main>
   );
 };
 
-export default Form;
+export default FormPage;
