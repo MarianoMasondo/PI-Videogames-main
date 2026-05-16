@@ -3,38 +3,41 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchVideogames } from "../../redux/actions";
 
-export default function SearchBar() {
+export default function SearchBar({ setCurrentPage }) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
   const handleChange = (event) => {
-    event.preventDefault();
-    setName(event.target.value);
-    dispatch(searchVideogames(event.target.value)); // para buscar juegos que coincidan con la letra ingresada
+    const value = event.target.value;
+    setName(value);
   };
 
   const handleSearch = (event) => {
     event.preventDefault();
-    // if(!name){
-    //   return alert("This game doesnt exist") ver eeror de juego inexistente
-    // }
+
     dispatch(searchVideogames(name));
-    setName("");
+
+    if (setCurrentPage) {
+      setCurrentPage(1);
+    }
   };
 
   return (
-    <div className={styles.container}>
-      <form action="">
+    <form className={styles.container} onSubmit={handleSearch}>
+      <label className={styles.label}>SEARCH GAME</label>
+
+      <div className={styles.searchBox}>
+        <span className={styles.icon}>⌕</span>
+
         <input
-          onChange={handleChange}
-          placeholder="Search..."
-          type="search"
+          type="text"
           value={name}
+          onChange={handleChange}
+          placeholder="Search games..."
         />
-        <button onClick={handleSearch} type="submit">
-          Go
-        </button>
-      </form>
-    </div>
+
+        <button type="submit">➜</button>
+      </div>
+    </form>
   );
 }

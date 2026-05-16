@@ -1,100 +1,146 @@
-.container h1 {
-  color: #4fc0d0;
-  text-align: center;
-  font-size: large;
-  font-family: sans-serif;
-  font-style: oblique;
-  font-weight: 1000;
-  margin-top: 5%;
-}
-
-.container p {
-  color: #4fc0d0;
-  text-align: center;
-  font-family: sans-serif;
-  margin-top: 12%;
-}
-.container img {
-  width: 300px;
-  height: 200px;
-  border-radius: 10px 10px 0 0;
+.cardLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
 .container {
-  width: 300px;
-  height: 400px;
-  border-radius: 20px;
-  background: linear-gradient(
-    170deg,
-    rgba(58, 56, 56, 0.623) 0%,
-    rgb(31, 31, 31) 100%
-  );
   position: relative;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.55);
+  min-height: 280px;
+  overflow: hidden;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.75), rgba(2, 6, 23, 0.95)),
+    radial-gradient(circle at 20% 0%, rgba(168, 85, 247, 0.2), transparent 40%);
+  border: 1px solid rgba(124, 58, 237, 0.5);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.45),
+    inset 0 0 24px rgba(56, 189, 248, 0.04);
   cursor: pointer;
-  transition: all 0.3s;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.18),
+    transparent 28%,
+    rgba(56, 189, 248, 0.14)
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
 }
 
 .container:hover {
-  transform: scale(0.9);
+  transform: translateY(-8px);
+  border-color: rgba(56, 189, 248, 0.85);
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.52),
+    0 0 26px rgba(124, 58, 237, 0.45);
 }
 
-.container span {
+.container:hover::before {
+  opacity: 1;
+}
+
+.favoriteButton {
   position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(226, 232, 240, 0.22);
+  background: rgba(2, 6, 23, 0.62);
+  color: #f8fafc;
+  font-size: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.favoriteButton:hover {
+  color: #f472b6;
+  border-color: rgba(244, 114, 182, 0.75);
+  box-shadow: 0 0 18px rgba(244, 114, 182, 0.38);
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 165px;
   overflow: hidden;
-  width: 150px;
-  height: 150px;
-  top: -10px;
-  left: -10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #020617;
 }
 
-.container span::before {
-  content: "Premium";
-  position: absolute;
-  width: 150%;
-  height: 40px;
-  background-image: linear-gradient(
-    45deg,
-    #ff6547 0%,
-    #ffb144 51%,
-    #ff7053 100%
-  );
-  transform: rotate(-45deg) translateY(-20px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.23);
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease, filter 0.35s ease;
 }
 
-.container span::after {
-  content: "";
-  position: absolute;
-  width: 10px;
-  bottom: 0;
-  left: 0;
-  height: 10px;
-  z-index: -1;
-  box-shadow: 140px -140px #cc3f47;
-  background-image: linear-gradient(
-    45deg,
-    #ff512f 0%,
-    #f09819 51%,
-    #ff512f 100%
-  );
+.container:hover .imageWrapper img {
+  transform: scale(1.08);
+  filter: saturate(1.25) contrast(1.08);
+}
+
+.info {
+  min-height: 115px;
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info h2 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+.genres {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.genrePill {
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: rgba(88, 28, 135, 0.45);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  color: #d8b4fe;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.footer {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.id {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .rating {
-  margin-bottom: 3px;
-  font-size: small;
+  color: #f8fafc;
+  font-size: 14px;
+  font-weight: 800;
 }

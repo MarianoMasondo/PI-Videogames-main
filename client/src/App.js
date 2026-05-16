@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+
 import LandingPage from "./views/landingPage/LandingPage.jsx";
 import DetailPage from "./views/detailPage/DetailPage.jsx";
 import FormPage from "./views/formPage/FormPage.jsx";
@@ -13,11 +14,12 @@ function App() {
   return (
     <div className="App">
       {location.pathname !== "/" && <NavBar />}
+
       <Routes>
-        <Route exact path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/detail/:id" element={<DetailPage />} />
-        <Route path="/form" element={<FormPage />} />
+        <Route path="/create" element={<FormPage />} />
+        <Route path="/videogames/:id" element={<DetailPage />} />
       </Routes>
     </div>
   );

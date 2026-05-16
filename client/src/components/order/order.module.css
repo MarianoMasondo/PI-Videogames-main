@@ -1,23 +1,52 @@
-.orderAscDesc {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 10%;
-  position: relative;
-  padding: 10px;
-  height: 25px;
-  margin-left: 10%;
-  margin-top: -4%;
+.orderContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
 
-.orderByRating {
+.selectGroup {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  width: 10%;
-  position: relative;
-  padding: 10px;
-  height: 25px;
-  margin-left: 10%;
-  margin-top: -1%;
+  gap: 8px;
+}
+
+.selectGroup label {
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+}
+
+.selectGroup select {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  outline: none;
+  color: #f8fafc;
+  background: rgba(15, 23, 42, 0.92);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: inset 0 0 18px rgba(124, 58, 237, 0.08);
+}
+
+.selectGroup select:focus {
+  border-color: rgba(168, 85, 247, 0.9);
+  box-shadow:
+    0 0 16px rgba(168, 85, 247, 0.25),
+    inset 0 0 18px rgba(124, 58, 237, 0.08);
+}
+
+.selectGroup option {
+  background: #020617;
+  color: #f8fafc;
+}
+
+@media (max-width: 520px) {
+  .orderContainer {
+    grid-template-columns: 1fr;
+  }
 }

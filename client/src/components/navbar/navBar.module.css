@@ -1,78 +1,114 @@
 .navBarContainer {
-  background: #164b60;
-  padding: 0px 60px 0px 60px;
+  width: 100%;
+  height: 86px;
+  padding: 0 56px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
+  background:
+    linear-gradient(180deg, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.78)),
+    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.28), transparent 38%);
+  border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(16px);
 }
 
-.titleContainer {
-  margin: auto;
-  margin-left: 23.5%;
-  color: #a2ff86;
-  align-items: center;
-}
-
-.logo {
+.logoArea {
   display: flex;
-  margin-left: 10%;
-  width: 7%;
-  height: 7%;
-  border-radius: 20%;
-  animation: rotate 5s infinite linear;
+  align-items: center;
+  gap: 14px;
+}
+
+.logoOrb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #ffffff, #38bdf8 15%, #7c3aed 45%, #020617 72%);
+  box-shadow:
+    0 0 18px rgba(56, 189, 248, 0.9),
+    0 0 36px rgba(168, 85, 247, 0.75);
+  animation: pulseOrb 3s infinite ease-in-out;
+}
+
+.logoText {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #f8fafc;
+  text-shadow:
+    0 0 14px rgba(56, 189, 248, 0.9),
+    0 0 26px rgba(168, 85, 247, 0.65);
 }
 
 .navButtons {
-  margin-right: 7%;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  margin-top: 5px;
+  gap: 14px;
 }
 
-.navBarContainer button {
-  background: transparent;
-  color: #fff;
-  font-size: 10px;
-  text-transform: uppercase;
-  font-weight: 600;
-  border: none;
-  padding: 10px 30px;
-  perspective: 30rem;
-  margin: 5px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.308);
-  align-self: flex-start;
-}
-.navBarContainer button::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  border-radius: 10px;
-  background: linear-gradient(
-    320deg,
-    rgba(0, 140, 255, 0.678),
-    rgba(128, 0, 128, 0.308)
-  );
-  z-index: 1;
-  transition: background 3s;
+.navButton,
+.exitButton {
+  min-width: 112px;
+  height: 44px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 14px;
+  color: #e5e7eb;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: rgba(15, 23, 42, 0.72);
+  box-shadow: inset 0 0 18px rgba(124, 58, 237, 0.12);
 }
 
-.navBarContainer button:hover::before {
-  animation: rotate 1s;
-  transition: all 0.5s;
+.navButton:hover,
+.active {
+  border-color: rgba(56, 189, 248, 0.95);
+  background: linear-gradient(135deg, #6d28d9, #0284c7);
+  box-shadow:
+    0 0 18px rgba(56, 189, 248, 0.55),
+    0 0 30px rgba(124, 58, 237, 0.45);
+  transform: translateY(-2px);
 }
 
-@keyframes rotate {
-  0% {
-    transform: rotateY(180deg);
+.exitButton:hover {
+  border-color: rgba(248, 113, 113, 0.9);
+  background: linear-gradient(135deg, #991b1b, #ef4444);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.45);
+  transform: translateY(-2px);
+}
+
+@keyframes pulseOrb {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
   }
 
-  100% {
-    transform: rotateY(360deg);
+  50% {
+    transform: scale(1.08);
+    filter: brightness(1.25);
+  }
+}
+
+@media (max-width: 768px) {
+  .navBarContainer {
+    height: auto;
+    padding: 18px;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .navButtons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .logoText {
+    font-size: 22px;
   }
 }

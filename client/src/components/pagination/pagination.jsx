@@ -3,14 +3,30 @@ import style from "./Pagination.module.css";
 
 const Pagination = ({ currentPage, gamesPerPage, allVideogames, paginate }) => {
   const pages = [];
-  // redondea el numero de pagina para arriba totales
   const totalPages = Math.ceil(allVideogames / gamesPerPage);
 
   for (let i = 0; i < totalPages; i++) {
     pages.push(i + 1);
   }
+
+  const goPrev = () => {
+    if (currentPage > 1) {
+      paginate(currentPage - 1);
+    }
+  };
+
+  const goNext = () => {
+    if (currentPage < totalPages) {
+      paginate(currentPage + 1);
+    }
+  };
+
   return (
-    <nav className={style.paginationContainer}>
+    <div className={style.paginationContainer}>
+      <button onClick={goPrev} disabled={currentPage === 1}>
+        « Prev
+      </button>
+
       {pages.map((page) => (
         <button
           key={page}
@@ -20,7 +36,11 @@ const Pagination = ({ currentPage, gamesPerPage, allVideogames, paginate }) => {
           {page}
         </button>
       ))}
-    </nav>
+
+      <button onClick={goNext} disabled={currentPage === totalPages}>
+        Next »
+      </button>
+    </div>
   );
 };
 

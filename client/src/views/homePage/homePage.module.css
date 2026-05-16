@@ -1,16 +1,161 @@
-.container {
-  background-color: #1b6b93;
+.page {
+  min-height: calc(100vh - 86px);
+  padding: 36px 32px 28px;
+  background:
+    linear-gradient(180deg, rgba(2, 6, 23, 0.2), #020617 70%),
+    radial-gradient(circle at 20% 0%, rgba(56, 189, 248, 0.2), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(168, 85, 247, 0.25), transparent 34%),
+    url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2200&q=80");
   background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-.cardContainer {
+.hero {
+  position: relative;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 3px solid #164b60;
+  overflow: hidden;
+  border-radius: 28px 28px 0 0;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(2, 6, 23, 0.2), rgba(2, 6, 23, 0.82)),
+    radial-gradient(circle at center, rgba(124, 58, 237, 0.22), transparent 40%);
+}
+
+.heroGlow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 2px solid rgba(56, 189, 248, 0.45);
+  box-shadow:
+    0 0 30px rgba(56, 189, 248, 0.55),
+    inset 0 0 30px rgba(168, 85, 247, 0.45);
+  opacity: 0.7;
+}
+
+.title {
+  position: relative;
+  margin: 0;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.9;
+  letter-spacing: 12px;
+  font-weight: 900;
+  color: #f8fafc;
+  text-shadow:
+    0 0 12px rgba(56, 189, 248, 0.9),
+    0 0 34px rgba(168, 85, 247, 0.8);
+}
+
+.subtitle {
+  position: relative;
+  margin: 14px 0 0;
+  font-size: 18px;
+  color: #cbd5e1;
+  letter-spacing: 0.5px;
+}
+
+.controlPanel {
+  max-width: 1600px;
+  margin: 0 auto 22px;
+  padding: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.62)),
+    radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.18), transparent 42%);
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 18px 60px rgba(0, 0, 0, 0.36),
+    inset 0 0 30px rgba(56, 189, 248, 0.05);
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1.25fr;
+  align-items: end;
+  gap: 20px;
+}
+
+.gamesSection {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 0 8px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(210px, 1fr));
+  gap: 22px;
+}
+
+.bottomBar {
+  margin-top: 24px;
   display: flex;
-  flex-direction: row;
-  border-radius: 15px;
-  flex-wrap: wrap;
-  gap: 2em;
-  padding: 50px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.counter {
+  min-width: 300px;
+  padding: 14px 22px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.62);
+  color: #cbd5e1;
+  font-size: 14px;
+  box-shadow: inset 0 0 24px rgba(124, 58, 237, 0.08);
+}
+
+@media (max-width: 1300px) {
+  .cardsGrid {
+    grid-template-columns: repeat(4, minmax(210px, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .controlPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .cardsGrid {
+    grid-template-columns: repeat(3, minmax(210px, 1fr));
+  }
+
+  .bottomBar {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 22px 16px;
+  }
+
+  .cardsGrid {
+    grid-template-columns: repeat(2, minmax(160px, 1fr));
+  }
+
+  .title {
+    letter-spacing: 6px;
+  }
+
+  .counter {
+    min-width: auto;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
 }

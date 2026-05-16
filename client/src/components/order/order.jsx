@@ -3,16 +3,21 @@ import styles from "./Order.module.css";
 
 const Order = ({ handleOrderAscDesc, handleOrderRating }) => {
   return (
-    <div>
-      <div className={`${styles.orderAscDesc}`}>
-        <select onChange={(e) => handleOrderAscDesc(e)}>
+    <div className={styles.orderContainer}>
+      <div className={styles.selectGroup}>
+        <label>SORT BY ORDER</label>
+
+        <select onChange={(e) => handleOrderAscDesc(e)} defaultValue="default">
           <option value="default">Select by order</option>
           <option value="asc">Ascendent</option>
           <option value="desc">Descendent</option>
         </select>
       </div>
-      <div className={`${styles.orderByRating}`}>
-        <select onChange={(e) => handleOrderRating(e)}>
+
+      <div className={styles.selectGroup}>
+        <label>SORT BY RATING</label>
+
+        <select onChange={(e) => handleOrderRating(e)} defaultValue="default">
           <option value="default">Select by rating</option>
           <option value="best">Best</option>
           <option value="worst">Worst</option>
