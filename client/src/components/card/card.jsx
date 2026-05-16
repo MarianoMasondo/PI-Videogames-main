@@ -3,7 +3,11 @@ import styles from "./Card.module.css";
 import { NavLink } from "react-router-dom";
 
 export default function Card(props) {
-  const genres = Array.isArray(props.genres) ? props.genres : [];
+  const genres = Array.isArray(props.genres)
+    ? props.genres
+        .map((genre) => (typeof genre === "string" ? genre : genre?.name))
+        .filter(Boolean)
+    : [];
 
   return (
     <NavLink to={`/videogames/${props.id}`} className={styles.cardLink}>

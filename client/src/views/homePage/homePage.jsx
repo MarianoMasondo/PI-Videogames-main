@@ -18,7 +18,7 @@ import SearchBar from "../../components/searchBar/SearchBar.jsx";
 export default function HomePage() {
   const dispatch = useDispatch();
 
-  const allVideogames = useSelector((state) => state.Videogames);
+  const allVideogames = useSelector((state) => state.Videogames) || [];
 
   const [aux, setAux] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -64,28 +64,43 @@ export default function HomePage() {
 
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroGlow}></div>
+      <div className={styles.layout}>
+        <aside className={styles.sidebar}>
+          <div className={styles.sidebarHeader}>
+            <h2>GAME LIBRARY</h2>
+            <p>Search, sort and filter your videogames collection.</p>
+          </div>
 
-        <h1 className={styles.title}>SPHERE</h1>
-        <p className={styles.subtitle}>The Henry's Videogames App</p>
-      </section>
+          <div className={styles.sidebarBlock}>
+            <SearchBar setCurrentPage={setCurrentPage} />
+          </div>
 
-      <section className={styles.controlPanel}>
-        <Order
-          handleOrderAscDesc={handleOrderAscDesc}
-          handleOrderRating={handleOrderRating}
-        />
+          <div className={styles.sidebarBlock}>
+            <Order
+              handleOrderAscDesc={handleOrderAscDesc}
+              handleOrderRating={handleOrderRating}
+            />
+          </div>
 
-        <SearchBar setCurrentPage={setCurrentPage} />
+          <div className={styles.sidebarBlock}>
+            <GenreFilter setCurrentPage={setCurrentPage} />
+          </div>
 
-        <GenreFilter setCurrentPage={setCurrentPage} />
-      </section>
+          <div className={styles.sidebarInfo}>
+            <span className={styles.sidebarLabel}>RESULTS</span>
+            <strong>{allVideogames.length} games</strong>
+          </div>
+        </aside>
 
-      <section className={styles.gamesSection}>
-        <div className={styles.cardsGrid}>
-          {currentGames?.map((game) => {
-            return (
+        <section className={styles.contentArea}>
+          <div className={styles.topRow}>
+            <div className={styles.counter}>
+              🎮 Showing {currentGames.length} of {allVideogames.length} games
+            </div>
+          </div>
+
+          <div className={styles.cardsGrid}>
+            {currentGames?.map((game) => (
               <Card
                 key={game.id}
                 id={game.id}
@@ -94,23 +109,19 @@ export default function HomePage() {
                 genres={game.genres}
                 rating={game.rating}
               />
-            );
-          })}
-        </div>
-
-        <div className={styles.bottomBar}>
-          <div className={styles.counter}>
-            🎮 Showing {currentGames.length} of {allVideogames.length} games
+            ))}
           </div>
 
-          <Pagination
-            currentPage={currentPage}
-            gamesPerPage={gamesPerPage}
-            allVideogames={allVideogames.length}
-            paginate={paginate}
-          />
-        </div>
-      </section>
+          <div className={styles.paginationRow}>
+            <Pagination
+              currentPage={currentPage}
+              gamesPerPage={gamesPerPage}
+              allVideogames={allVideogames.length}
+              paginate={paginate}
+            />
+          </div>
+        </section>
+      </div>
     </main>
   );
 }

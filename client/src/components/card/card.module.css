@@ -2,80 +2,57 @@
   display: block;
   color: inherit;
   text-decoration: none;
+  height: 100%;
 }
 
 .container {
   position: relative;
-  min-height: 280px;
+  height: 100%;
+  min-height: 236px;
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: 16px;
   background:
-    linear-gradient(180deg, rgba(15, 23, 42, 0.75), rgba(2, 6, 23, 0.95)),
-    radial-gradient(circle at 20% 0%, rgba(168, 85, 247, 0.2), transparent 40%);
-  border: 1px solid rgba(124, 58, 237, 0.5);
+    linear-gradient(180deg, rgba(8, 14, 34, 0.94), rgba(3, 7, 20, 0.98)),
+    radial-gradient(circle at top, rgba(124, 58, 237, 0.14), transparent 38%);
+  border: 1px solid rgba(124, 58, 237, 0.55);
   box-shadow:
-    0 16px 40px rgba(0, 0, 0, 0.45),
-    inset 0 0 24px rgba(56, 189, 248, 0.04);
-  cursor: pointer;
+    0 12px 28px rgba(0, 0, 0, 0.38),
+    inset 0 0 18px rgba(56, 189, 248, 0.04);
+  display: flex;
+  flex-direction: column;
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.container::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(168, 85, 247, 0.18),
-    transparent 28%,
-    rgba(56, 189, 248, 0.14)
-  );
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
 }
 
 .container:hover {
-  transform: translateY(-8px);
-  border-color: rgba(56, 189, 248, 0.85);
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.8);
   box-shadow:
-    0 20px 48px rgba(0, 0, 0, 0.52),
-    0 0 26px rgba(124, 58, 237, 0.45);
-}
-
-.container:hover::before {
-  opacity: 1;
+    0 16px 36px rgba(0, 0, 0, 0.46),
+    0 0 20px rgba(124, 58, 237, 0.32);
 }
 
 .favoriteButton {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: 10px;
+  left: 10px;
   z-index: 2;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: 10px;
-  border: 1px solid rgba(226, 232, 240, 0.22);
-  background: rgba(2, 6, 23, 0.62);
+  border: 1px solid rgba(226, 232, 240, 0.2);
+  background: rgba(2, 6, 23, 0.65);
   color: #f8fafc;
-  font-size: 20px;
+  font-size: 19px;
   cursor: pointer;
   backdrop-filter: blur(8px);
-  transition: all 0.2s ease;
-}
-
-.favoriteButton:hover {
-  color: #f472b6;
-  border-color: rgba(244, 114, 182, 0.75);
-  box-shadow: 0 0 18px rgba(244, 114, 182, 0.38);
 }
 
 .imageWrapper {
   width: 100%;
-  height: 165px;
+  height: 108px;
   overflow: hidden;
   background: #020617;
 }
@@ -84,63 +61,69 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.35s ease, filter 0.35s ease;
+  transition: transform 0.3s ease;
 }
 
 .container:hover .imageWrapper img {
-  transform: scale(1.08);
-  filter: saturate(1.25) contrast(1.08);
+  transform: scale(1.06);
 }
 
 .info {
-  min-height: 115px;
-  padding: 16px 18px 18px;
+  flex: 1;
+  padding: 12px 14px 13px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .info h2 {
   margin: 0;
+  min-height: 42px;
   color: #f8fafc;
-  font-size: 18px;
-  font-weight: 800;
-  line-height: 1.25;
-  text-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+  font-size: 15.5px;
+  font-weight: 850;
+  line-height: 1.18;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .genres {
-  margin-top: 12px;
+  margin-top: 8px;
+  min-height: 36px;
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  align-content: flex-start;
+  gap: 6px;
 }
 
 .genrePill {
-  padding: 5px 9px;
-  border-radius: 8px;
+  padding: 4px 8px;
+  border-radius: 7px;
   background: rgba(88, 28, 135, 0.45);
-  border: 1px solid rgba(168, 85, 247, 0.35);
+  border: 1px solid rgba(168, 85, 247, 0.34);
   color: #d8b4fe;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
 }
 
 .footer {
-  margin-top: 16px;
+  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
 }
 
 .id {
   color: #64748b;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
 }
 
 .rating {
   color: #f8fafc;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 800;
 }

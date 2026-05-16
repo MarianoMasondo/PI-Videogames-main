@@ -8,13 +8,11 @@ export default function SearchBar({ setCurrentPage }) {
   const [name, setName] = useState("");
 
   const handleChange = (event) => {
-    const value = event.target.value;
-    setName(value);
+    setName(event.target.value);
   };
 
   const handleSearch = (event) => {
     event.preventDefault();
-
     dispatch(searchVideogames(name));
 
     if (setCurrentPage) {

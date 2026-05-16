@@ -2,11 +2,11 @@ import React from "react";
 import style from "./Pagination.module.css";
 
 const Pagination = ({ currentPage, gamesPerPage, allVideogames, paginate }) => {
-  const pages = [];
   const totalPages = Math.ceil(allVideogames / gamesPerPage);
+  const pages = [];
 
-  for (let i = 0; i < totalPages; i++) {
-    pages.push(i + 1);
+  for (let i = 1; i <= totalPages; i++) {
+    pages.push(i);
   }
 
   const goPrev = () => {

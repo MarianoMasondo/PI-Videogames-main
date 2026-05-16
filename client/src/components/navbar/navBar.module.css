@@ -1,14 +1,14 @@
 .navBarContainer {
   width: 100%;
-  height: 86px;
-  padding: 0 56px;
+  height: 72px;
+  padding: 0 52px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background:
-    linear-gradient(180deg, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.78)),
-    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.28), transparent 38%);
-  border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+    linear-gradient(180deg, rgba(3, 7, 18, 0.97), rgba(3, 7, 18, 0.88)),
+    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.22), transparent 38%);
+  border-bottom: 1px solid rgba(124, 58, 237, 0.35);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -18,29 +18,29 @@
 .logoArea {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .logoOrb {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background:
     radial-gradient(circle at 30% 30%, #ffffff, #38bdf8 15%, #7c3aed 45%, #020617 72%);
   box-shadow:
-    0 0 18px rgba(56, 189, 248, 0.9),
-    0 0 36px rgba(168, 85, 247, 0.75);
+    0 0 16px rgba(56, 189, 248, 0.9),
+    0 0 30px rgba(168, 85, 247, 0.72);
   animation: pulseOrb 3s infinite ease-in-out;
 }
 
 .logoText {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 900;
   letter-spacing: 4px;
   color: #f8fafc;
   text-shadow:
-    0 0 14px rgba(56, 189, 248, 0.9),
-    0 0 26px rgba(168, 85, 247, 0.65);
+    0 0 12px rgba(56, 189, 248, 0.9),
+    0 0 24px rgba(168, 85, 247, 0.65);
 }
 
 .navButtons {
@@ -52,13 +52,13 @@
 .navButton,
 .exitButton {
   min-width: 112px;
-  height: 44px;
+  height: 42px;
   border: 1px solid rgba(148, 163, 184, 0.28);
-  border-radius: 14px;
+  border-radius: 13px;
   color: #e5e7eb;
   font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.4px;
+  font-weight: 850;
+  letter-spacing: 0.3px;
   cursor: pointer;
   transition: all 0.25s ease;
   background: rgba(15, 23, 42, 0.72);
@@ -98,9 +98,9 @@
 @media (max-width: 768px) {
   .navBarContainer {
     height: auto;
-    padding: 18px;
+    padding: 16px;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
   }
 
   .navButtons {
