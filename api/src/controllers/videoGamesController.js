@@ -3,7 +3,7 @@ const { Videogames, Genres } = require("../db");
 require("dotenv").config();
 const apikey = process.env.API_KEY;
 const URL = `https://api.rawg.io/api/games?key=${apikey}&page_size=40`;
-const pageNum = 4;
+const pageNum = 5;
 
 const allDataVideogames = async () => {
   let response = [];
