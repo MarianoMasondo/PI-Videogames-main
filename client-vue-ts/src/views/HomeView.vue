@@ -1,65 +1,48 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { getVideogames } from "../services/videogamesService";
-import type { Videogame } from "../types/videogame";
+import { onMounted } from "vue";
+import { useVideogamesStore } from "../stores/videogamesStore";
+import VideogameCard from "../components/VideogameCard.vue";
 
-const videogames = ref<Videogame[]>([]);
-const loading = ref<boolean>(false);
-const error = ref<string | null>(null);
-
-const loadVideogames = async () => {
-  try {
-    loading.value = true;
-    error.value = null;
-
-    const data = await getVideogames();
-
-    videogames.value = data;
-
-    console.log("Videojuegos recibidos:", data);
-  } catch (err) {
-    error.value = "No se pudieron cargar los videojuegos";
-    console.error(err);
-  } finally {
-    loading.value = false;
-  }
-};
+const store = useVideogamesStore();
 
 onMounted(() => {
-  loadVideogames();
+  store.fetchVideogames();
+  store.fetchGenres();
 });
 </script>
 
 <template>
-  <main>
+  <main class="home">
     <h1>Videojuegos</h1>
 
-    <p v-if="loading">Cargando videojuegos...</p>
+    <p v-if="store.loading">Cargando videojuegos...</p>
 
-    <p v-if="error">
-      {{ error }}
+    <p v-if="store.error">
+      {{ store.error }}
     </p>
 
-    <p v-if="!loading && !error">
-      Cantidad de videojuegos: {{ videogames.length }}
+    <p v-if="!store.loading && !store.error">
+      Cantidad de videojuegos: {{ store.videogames.length }}
     </p>
 
-    <section>
-      <article
-        v-for="game in videogames"
+    <section class="videogames-grid">
+      <VideogameCard
+        v-for="game in store.videogames"
         :key="game.id"
-      >
-        <h2>{{ game.name }}</h2>
-
-        <img
-          v-if="game.image || game.background_image"
-          :src="game.image || game.background_image"
-          :alt="game.name"
-          width="200"
-        />
-
-        <p>Rating: {{ game.rating ?? "Sin rating" }}</p>
-      </article>
+        :game="game"
+      />
     </section>
   </main>
 </template>
+
+<style scoped>
+.home {
+  padding: 24px;
+}
+
+.videogames-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+</style>
