@@ -2,7 +2,7 @@
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { getVideogameById } from "../services/videogamesService";
-import type { Videogame, Platform } from "../types/videogame";
+import type { Videogame, Platform, GameGenre } from "../types/videogame";
 
 const route = useRoute();
 const router = useRouter();
@@ -17,6 +17,14 @@ const getPlatformName = (platform: Platform | string): string => {
   }
 
   return platform.platform?.name || platform.name || "Sin plataforma";
+};
+
+const getGenreName = (genre: GameGenre): string => {
+  if (typeof genre === "string") {
+    return genre;
+  }
+
+  return genre.name;
 };
 
 const loadVideogame = async () => {
@@ -88,12 +96,12 @@ onMounted(() => {
           <strong>Géneros:</strong>
 
           <span
-            v-for="genre in videogame.genres"
-            :key="genre.id"
-            class="tag"
-          >
-            {{ genre.name }}
-          </span>
+  v-for="genre in videogame.genres"
+  :key="getGenreName(genre)"
+  class="tag"
+>
+  {{ getGenreName(genre) }}
+</span>
         </div>
 
         <div v-if="videogame.platforms?.length">

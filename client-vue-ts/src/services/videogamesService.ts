@@ -27,9 +27,13 @@ export const getVideogameById = async (
 export const searchVideogamesByName = async (
   name: string
 ): Promise<Videogame[]> => {
-  const response = await axios.get<Videogame[]>(
-    `${API_URL}/videogames/name?name=${name}`
+  const response = await axios.get<Videogame[] | { message: string }>(
+    `${API_URL}/videogames/name?name=${encodeURIComponent(name)}`
   );
+
+  if (!Array.isArray(response.data)) {
+    return [];
+  }
 
   return response.data;
 };

@@ -2,8 +2,17 @@
 import { onMounted } from "vue";
 import { useVideogamesStore } from "../stores/videogamesStore";
 import VideogameCard from "../components/VideogameCard.vue";
+import SearchBar from "../components/SearchBar.vue";
 
 const store = useVideogamesStore();
+
+const handleSearch = (name: string) => {
+  store.searchByName(name);
+};
+
+const handleReset = () => {
+  store.resetVideogames();
+};
 
 onMounted(() => {
   store.fetchVideogames();
@@ -14,6 +23,11 @@ onMounted(() => {
 <template>
   <main class="home">
     <h1>Videojuegos</h1>
+
+    <SearchBar
+      @search="handleSearch"
+      @reset="handleReset"
+    />
 
     <p v-if="store.loading">Cargando videojuegos...</p>
 

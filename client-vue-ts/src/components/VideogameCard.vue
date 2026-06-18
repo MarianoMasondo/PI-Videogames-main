@@ -1,10 +1,18 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-import type { Videogame } from "../types/videogame";
+import type { GameGenre, Videogame } from "../types/videogame";
 
 defineProps<{
   game: Videogame;
 }>();
+
+const getGenreName = (genre: GameGenre): string => {
+  if (typeof genre === "string") {
+    return genre;
+  }
+
+  return genre.name;
+};
 </script>
 
 <template>
@@ -29,10 +37,10 @@ defineProps<{
       <div v-if="game.genres?.length">
         <span
           v-for="genre in game.genres"
-          :key="genre.id"
+          :key="getGenreName(genre)"
           class="videogame-card__genre"
         >
-          {{ genre.name }}
+          {{ getGenreName(genre) }}
         </span>
       </div>
     </div>

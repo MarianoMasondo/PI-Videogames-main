@@ -1,7 +1,9 @@
 export interface Genre {
-  id: number;
+  id?: number;
   name: string;
 }
+
+export type GameGenre = Genre | string;
 
 export interface Platform {
   platform?: {
@@ -20,7 +22,7 @@ export interface Videogame {
   background_image?: string;
   released?: string;
   rating?: number;
-  genres?: Genre[];
+  genres?: GameGenre[];
   createdInDb?: boolean;
 }
 
