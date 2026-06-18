@@ -73,8 +73,9 @@ const nameDataGames = async (name) => {
       return { message: "No se encontraron videojuegos con este nombre" };
     }
 
-    const allData = [apiData, dbData];
-    return allData;
+    const allData = [...dbDataGames, ...apiData];
+
+return allData.slice(0, 15);
   } catch (error) {
     throw new Error("Error al buscar los juegos");
   }
