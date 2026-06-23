@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { Genre, Videogame } from "../types/videogame";
+import type { GameGenre, Genre, Videogame } from "../types/videogame";
 import {
   getVideogames,
   getGenres,
@@ -13,6 +13,14 @@ interface VideogamesState {
   loading: boolean;
   error: string | null;
 }
+
+const getGenreName = (genre: GameGenre): string => {
+  if (typeof genre === "string") {
+    return genre;
+  }
+
+  return genre.name;
+};
 
 export const useVideogamesStore = defineStore("videogames", {
   state: (): VideogamesState => ({
@@ -69,6 +77,54 @@ export const useVideogamesStore = defineStore("videogames", {
 
     resetVideogames() {
       this.videogames = this.allVideogames;
+    },
+
+    filterByGenre(genreName: string) {
+      if (genreName === "all") {
+        this.videogames = this.allVideogames;
+        return;
+      }
+
+      this.videogames = this.allVideogames.filter((game) =>
+        game.genres?.some((genre) => getGenreName(genre) === genreName),
+      );
+    },
+
+    filterByOrigin(origin: string) {
+      if (origin === "all") {
+        this.videogames = this.allVideogames;
+        return;
+      }
+
+      if (origin === "api") {
+        this.videogames = this.allVideogames.filter(
+          (game) => !game.createdInDb,
+        );
+        return;
+      }
+
+      if (origin === "db") {
+        this.videogames = this.allVideogames.filter(
+          (game) => game.createdInDb,
+        );
+      }
+    },
+
+    orderByName(order: "asc" | "desc") {
+      this.videogames = [...this.videogames].sort((a, b) => {
+        return order === "asc"
+          ? a.name.localeCompare(b.name)
+          : b.name.localeCompare(a.name);
+      });
+    },
+
+    orderByRating(order: "asc" | "desc") {
+      this.videogames = [...this.videogames].sort((a, b) => {
+        const ratingA = a.rating ?? 0;
+        const ratingB = b.rating ?? 0;
+
+        return order === "asc" ? ratingA - ratingB : ratingB - ratingA;
+      });
     },
   },
 });

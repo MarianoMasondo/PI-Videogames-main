@@ -3,6 +3,7 @@ import { onMounted } from "vue";
 import { useVideogamesStore } from "../stores/videogamesStore";
 import VideogameCard from "../components/VideogameCard.vue";
 import SearchBar from "../components/SearchBar.vue";
+import FiltersBar from "../components/FiltersBar.vue";
 
 const store = useVideogamesStore();
 
@@ -28,6 +29,15 @@ onMounted(() => {
       @search="handleSearch"
       @reset="handleReset"
     />
+
+    <FiltersBar
+  :genres="store.genres"
+  @filter-genre="store.filterByGenre"
+  @filter-origin="store.filterByOrigin"
+  @order-name="store.orderByName"
+  @order-rating="store.orderByRating"
+  @reset="handleReset"
+/>
 
     <p v-if="store.loading">Cargando videojuegos...</p>
 
