@@ -49,7 +49,7 @@ const loadVideogame = async () => {
 };
 
 const goBack = () => {
-  router.push("/");
+  router.push("/home");
 };
 
 onMounted(() => {
