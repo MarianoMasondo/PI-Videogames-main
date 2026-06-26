@@ -1,43 +1,43 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useVideogamesStore } from "../stores/videogamesStore";
-import VideogameCard from "../components/VideogameCard.vue";
-import SearchBar from "../components/SearchBar.vue";
-import FiltersBar from "../components/FiltersBar.vue";
+import { onMounted } from 'vue'
+import { useVideogamesStore } from '../stores/videogamesStore'
+import VideogameCard from '../components/VideogameCard.vue'
+import SearchBar from '../components/SearchBar.vue'
+import FiltersBar from '../components/FiltersBar.vue'
+import { RouterLink } from 'vue-router'
 
-const store = useVideogamesStore();
+const store = useVideogamesStore()
 
 const handleSearch = (name: string) => {
-  store.searchByName(name);
-};
+  store.searchByName(name)
+}
 
 const handleReset = () => {
-  store.resetVideogames();
-};
+  store.resetVideogames()
+}
 
 onMounted(() => {
-  store.fetchVideogames();
-  store.fetchGenres();
-});
+  store.fetchVideogames()
+  store.fetchGenres()
+})
 </script>
 
 <template>
   <main class="home">
     <h1>Videojuegos</h1>
 
-    <SearchBar
-      @search="handleSearch"
-      @reset="handleReset"
-    />
+    <RouterLink class="create-link" to="/create"> Crear videojuego </RouterLink>
+
+    <SearchBar @search="handleSearch" @reset="handleReset" />
 
     <FiltersBar
-  :genres="store.genres"
-  @filter-genre="store.filterByGenre"
-  @filter-origin="store.filterByOrigin"
-  @order-name="store.orderByName"
-  @order-rating="store.orderByRating"
-  @reset="handleReset"
-/>
+      :genres="store.genres"
+      @filter-genre="store.filterByGenre"
+      @filter-origin="store.filterByOrigin"
+      @order-name="store.orderByName"
+      @order-rating="store.orderByRating"
+      @reset="handleReset"
+    />
 
     <p v-if="store.loading">Cargando videojuegos...</p>
 
@@ -50,11 +50,7 @@ onMounted(() => {
     </p>
 
     <section class="videogames-grid">
-      <VideogameCard
-        v-for="game in store.videogames"
-        :key="game.id"
-        :game="game"
-      />
+      <VideogameCard v-for="game in store.videogames" :key="game.id" :game="game" />
     </section>
   </main>
 </template>
@@ -68,5 +64,15 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 24px;
+}
+
+.create-link {
+  display: inline-block;
+  margin: 12px 0 20px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #222;
+  color: white;
+  text-decoration: none;
 }
 </style>

@@ -1,37 +1,38 @@
 export interface Genre {
-  id?: number;
-  name: string;
+  id?: number
+  name: string
 }
 
-export type GameGenre = Genre | string;
+export type GameGenre = Genre | string
 
 export interface Platform {
   platform?: {
-    id: number;
-    name: string;
-  };
-  name?: string;
+    id: number
+    name: string
+  }
+  name?: string
 }
 
 export interface Videogame {
   id: string | number;
   name: string;
   description?: string;
-  platforms?: Platform[] | string[];
+  platforms?: Platform[] | string[] | string;
   image?: string;
   background_image?: string;
   released?: string;
   rating?: number;
   genres?: GameGenre[];
   createdInDb?: boolean;
+  createDB?: boolean;
 }
 
 export interface CreateVideogamePayload {
-  name: string;
-  description: string;
-  platforms: string[];
-  image: string;
-  released: string;
-  rating: number;
-  genres: number[];
+  name: string
+  description: string
+  platforms: string
+  image: string
+  released: string
+  rating: number
+  genres: string[]
 }

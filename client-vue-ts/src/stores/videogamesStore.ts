@@ -14,6 +14,17 @@ interface VideogamesState {
   error: string | null;
 }
 
+const isDatabaseGame = (game: Videogame): boolean => {
+  const idAsString = String(game.id);
+
+  const isUuid =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+      idAsString,
+    );
+
+  return Boolean(game.createDB || game.createdInDb || isUuid);
+};
+
 const getGenreName = (genre: GameGenre): string => {
   if (typeof genre === "string") {
     return genre;
@@ -91,24 +102,24 @@ export const useVideogamesStore = defineStore("videogames", {
     },
 
     filterByOrigin(origin: string) {
-      if (origin === "all") {
-        this.videogames = this.allVideogames;
-        return;
-      }
+  if (origin === "all") {
+    this.videogames = this.allVideogames;
+    return;
+  }
 
-      if (origin === "api") {
-        this.videogames = this.allVideogames.filter(
-          (game) => !game.createdInDb,
-        );
-        return;
-      }
+  if (origin === "api") {
+    this.videogames = this.allVideogames.filter(
+      (game) => !isDatabaseGame(game),
+    );
+    return;
+  }
 
-      if (origin === "db") {
-        this.videogames = this.allVideogames.filter(
-          (game) => game.createdInDb,
-        );
-      }
-    },
+  if (origin === "db") {
+    this.videogames = this.allVideogames.filter((game) =>
+      isDatabaseGame(game),
+    );
+  }
+},
 
     orderByName(order: "asc" | "desc") {
       this.videogames = [...this.videogames].sort((a, b) => {
