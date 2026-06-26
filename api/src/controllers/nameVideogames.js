@@ -1,33 +1,26 @@
 const axios = require("axios");
-const apiKey = process.env.API_KEY;
 const { Videogames, Genres } = require("../db");
 const { Op } = require("sequelize");
+
+const apiKey = process.env.API_KEY;
 
 const nameDataGames = async (name) => {
   const URL = `https://api.rawg.io/api/games?search=${name}&key=${apiKey}&page_size=15`;
 
   try {
     const response = await axios.get(URL);
+
     const apiData = response.data.results.map(
-      ({
+      ({ id, name, platforms, background_image, released, rating, genres }) => ({
         id,
         name,
-        // description,
         platforms,
-        background_image,
+        image: background_image,
         released,
         rating,
-        genres,
-      }) => ({
-        id: id,
-        name: name,
-        // description: description,
-        platforms: platforms,
-        image: background_image,
-        released: released,
-        rating: rating,
-        genres: genres.map((g) => g.name),
-      })
+        genres: genres.map((genre) => genre.name),
+        createDB: false,
+      }),
     );
 
     const dbData = await Videogames.findAll({
@@ -47,26 +40,19 @@ const nameDataGames = async (name) => {
       ],
       limit: 15,
     });
+
     const dbDataGames = dbData.map(
-      ({
+      ({ id, name, description, platforms, image, released, rating, genres, createDB }) => ({
         id,
         name,
         description,
         platforms,
-        background_image,
+        image,
         released,
         rating,
-        Genres,
-      }) => ({
-        id: id,
-        name: name,
-        description: description,
-        platforms: platforms,
-        image: background_image,
-        released: released,
-        rating: rating,
-        genres: Genres.map((genre) => genre.name),
-      })
+        genres: genres.map((genre) => genre.name),
+        createDB,
+      }),
     );
 
     if (apiData.length === 0 && dbDataGames.length === 0) {
@@ -75,8 +61,9 @@ const nameDataGames = async (name) => {
 
     const allData = [...dbDataGames, ...apiData];
 
-return allData.slice(0, 15);
+    return allData.slice(0, 15);
   } catch (error) {
+    console.error("Error real en nameVideogames:", error);
     throw new Error("Error al buscar los juegos");
   }
 };
